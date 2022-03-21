@@ -1,3 +1,5 @@
+GIT logi
+
 commit da0a530ab38a4af53fe9397664499beea744f988
 Author: Tuomas Marenk <marenk@cubbli20-gold.local>
 Date:   Mon Mar 21 15:03:25 2022 +0200
