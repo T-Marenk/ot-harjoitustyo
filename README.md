@@ -1,6 +1,6 @@
 # Harjoitustyö kurssia varten
 
-Tämä on kurssia *Ohjelmistotekniikka* varten. **EI OLE VALMIS**
+Tämä on kurssia *Ohjelmistotekniikka* varten. **EI VALMIS**
 
 ## Laskarit
 
