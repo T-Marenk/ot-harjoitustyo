@@ -2,7 +2,7 @@
 
 Tämä on kurssia *Ohjelmistotekniikka* varten. **EI VALMIS**
 
-## Laskarit
+## Laskurit
 
 **Viikko 1**
 
