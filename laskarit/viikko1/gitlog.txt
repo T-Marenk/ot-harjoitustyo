@@ -1,0 +1,113 @@
+commit da0a530ab38a4af53fe9397664499beea744f988
+Author: Tuomas Marenk <marenk@cubbli20-gold.local>
+Date:   Mon Mar 21 15:03:25 2022 +0200
+
+    Poistettu 1 ja uudelleennimetty 2 22
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 9d4bcaea9361a3cb9c5bf695ce800aec8905e8e4
+Author: Tuomas Marenk <marenk@cubbli20-gold.local>
+Date:   Mon Mar 21 14:55:51 2022 +0200
+
+    Luotut tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 7f41d4b78b654f5bae9414b52bf20d9e9aacab37
+Author: Tuomas Marenk <marenk@cubbli20-gold.local>
+Date:   Mon Mar 21 14:51:58 2022 +0200
+
+    Muokattu eka ja kolmas
+
+ eka.txt    | 3 +--
+ kolmas.txt | 4 +++-
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+commit e840d6759fc7f3584ab61d30b79290922ec025f8
+Author: Tuomas Marenk <marenk@cubbli20-gold.local>
+Date:   Mon Mar 21 14:50:32 2022 +0200
+
+    Vaihdettu tiedosto ekaksi
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7e7779cce795082d941ba2e9842c87301b0732f5
+Author: Tuomas Marenk <marenk@cubbli20-gold.local>
+Date:   Mon Mar 21 14:49:47 2022 +0200
+
+    Poistettu toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 4ab89261f81d0529a81fbb707b94e70002999ab8
+Author: Tuomas Marenk <marenk@cubbli20-gold.local>
+Date:   Mon Mar 21 14:47:15 2022 +0200
+
+    Poistettu tiedosto.txt sisaltoa
+
+ tiedosto.txt | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit 106040ee83bf32535291a084248a24685de58b70
+Author: Tuomas Marenk <marenk@cubbli20-gold.local>
+Date:   Mon Mar 21 14:46:24 2022 +0200
+
+    Muutettu tiedosto.txt
+
+ tiedosto.txt | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+commit 67559c3277ed878f19fab347ef44d24c2c478538
+Author: Tuomas Marenk <marenk@cubbli20-gold.local>
+Date:   Mon Mar 21 14:40:56 2022 +0200
+
+    Luotu hakemisto stuff ja stuff.txt
+
+ stuff/stuff.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit fcf861c90f9885e009f9dccaffabf22d7cfceec8
+Author: Tuomas Marenk <marenk@cubbli20-gold.local>
+Date:   Mon Mar 21 14:39:30 2022 +0200
+
+    Muutettu kolmas ja toinen sisältöä
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 05459eeb9a904b792e01c8d178fe207e717006f0
+Author: Tuomas Marenk <marenk@cubbli20-gold.local>
+Date:   Mon Mar 21 14:38:26 2022 +0200
+
+    Luotu kolmas.txt
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7ba7b8bba8c84e70984b6abfd710a2ff3dc55bc4
+Author: Tuomas Marenk <marenk@cubbli20-gold.local>
+Date:   Mon Mar 21 14:37:30 2022 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 4557b0178615e46b423e006e0e6a24ac0f952b85
+Author: Tuomas Marenk <marenk@cubbli20-gold.local>
+Date:   Mon Mar 21 14:34:09 2022 +0200
+
+    Luotu tiedosto tiedosto.txt
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
