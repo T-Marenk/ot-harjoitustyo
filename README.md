@@ -2,7 +2,10 @@
 
 Tämä on kurssia *Ohjelmistotekniikka* varten. **EI VALMIS**
 
+## Dokumentaatio
+
 [vaatimuusmaarittely.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/vaatimusmaarittely.md)
+
 [tuntikirjanpito.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/tuntikirjapito.md)
 
 ## Laskarit
