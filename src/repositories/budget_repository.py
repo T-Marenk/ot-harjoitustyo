@@ -54,6 +54,11 @@ class BudgetRepository:
 
 
         return self._read()
+    
+    def delete_all(
+            self
+    ):
+        self._write([])
 
     def _read(
             self
@@ -68,11 +73,12 @@ class BudgetRepository:
                 p = row.split(';')
 
                 expence_id = p[0]
-                expence_description = p[1]
+                expence = p[1]
                 expence_amount = p[2]
+                expence_description = p[3]
 
                 expences.append(
-                        Expence(expence_description, expence_amount, expence_id)
+                        Expence(expence, expence_amount, expence_description, expence_id)
                     )
     
         return expences
@@ -91,7 +97,7 @@ class BudgetRepository:
         
         with open(self._file_path, 'w') as file:
             for expence in expences:
-                line = f'{expence.expence_id};{expence.expence};{expence.amount}'
+                line = f'{expence.expence_id};{expence.expence};{expence.amount};{expence.description}'
 
                 file.write(line+'\n')
 

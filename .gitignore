@@ -2,4 +2,6 @@
 __pycache__
 .coverage
 htmlcov
-__init__.*
+
+data/expences.csv
+data/expences-test.csv
