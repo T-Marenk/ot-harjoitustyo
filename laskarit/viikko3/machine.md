@@ -1,4 +1,4 @@
-'''mermaid
+```mermaid
  sequenceDiagram
      participant main
      main->>Machine: __init__
@@ -36,4 +36,4 @@
      end
      Machine-->>main: 
      deactivate Machine
-'''
+```

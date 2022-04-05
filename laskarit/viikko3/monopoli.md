@@ -1,4 +1,4 @@
-'''mermaid
+```mermaid
  classDiagram
      Board "1" <-- "40" Square
      Piece "*" <-- "1" Square
@@ -34,7 +34,6 @@
      }
      class Player{
          money
- 
      }
      class Start_square{
          action()
@@ -62,4 +61,4 @@
          id
          action()
      }
-'''	
+```
