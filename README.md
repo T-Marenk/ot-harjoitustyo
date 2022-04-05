@@ -1,6 +1,8 @@
-# Harjoitustyö kurssia varten
+# Budjetointisovellus
 
-Tämä on kurssia *Ohjelmistotekniikka* varten. **EI VALMIS**
+Tämä projekti on Helsingin yliopiston kurssia *Ohjelmistotekniikka* varten.
+
+Sovellusksen tarkoitus on auttaa käyttäjiä seuraamaan rahankäyttöään ja auttaa heitä budjetoimaan menojaan ja tulojaan
 
 ## Dokumentaatio
 
@@ -8,10 +10,52 @@ Tämä on kurssia *Ohjelmistotekniikka* varten. **EI VALMIS**
 
 [tuntikirjanpito.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/tuntikirjapito.md)
 
-## Laskarit
+[changelog.md](TODO)
 
-**Viikko 1**
+## Nykyinen tilanne
 
-[gitlog.txt](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/laskarit/viikko1/gitlog.txt)
+Sovellus on vasta hyvin alkuvaiheissa. Väliaikaisesti käyttöliittymänä toimii yksinkertainen testiliittymä, jolla pystyy testaamaan nykyisiä toimintoja. Tämä vaihtuu myöhemmin graafiseksi käyttöliittymäksi
 
-[komentorivi.txt](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/laskarit/viikko1/komentorivi.txt)
+Toiminnassa olevat ominaisuudet
+
+- Menojen lisääminen sovellukseen
+- Tulojen lisääminen sovellukseen
+- Menot ja tulot tallennetaan tiedostoon, josta ne voi lukea seuraavalla suorituskerralla myös
+
+Puuttuvat toiminnot
+
+- Käyttäjät
+- Menojen ja tulojen tarkastelu
+- Menojen ja tulojen poisto
+
+## Asennus
+
+1. Asenna riippuvuudet suorittamalla:
+
+```bash
+poetry install
+```
+
+2. Sovelluksen saa käyntiin komennolla:
+
+```bash
+poetry run invoke start
+```
+
+### Testaaminen
+
+Luodut testit on mahdollista ajaa komennolla
+
+```bash
+poetry run invoke test
+```
+
+### Testikattavuus
+
+Testikattavuus on mahdollista luoda komennolla
+
+```bash
+poetry run invoke coverage-report
+```
+
+Raportti luodaan _htmlcov_-hakemistoon.
