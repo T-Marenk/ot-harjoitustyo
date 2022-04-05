@@ -6,6 +6,7 @@ authors = ["Tuomas Marenk <tuomas.marenk@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+python-dotenv = "^0.20.0"
 
 [tool.poetry.dev-dependencies]
 
