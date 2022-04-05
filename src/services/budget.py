@@ -14,7 +14,8 @@ class BudgetService:
     def add_expence(
             self,
             description,
-            amount
+            amount,
+            expence=True
     ):
         """Lisää menon budjettiin.
 
@@ -24,13 +25,40 @@ class BudgetService:
         Returns:
             budjetin nykyisen tilanteen
         """
-        
-        expence = Expence(desciption, amount)
+        amount *= -1 
+        expence = Expence(expence, amount, description)
 
+        expences = self._budget_repository.add_expence(expence)
+
+        total = 0
+        for i in expences:
+            total += int(i.amount)
+        return total
+    
+    def add_income(
+            self,
+            description,
+            amount,
+            expence=False
+    ):
+        """Lisää tulon budjettiin.
+
+        Args:
+            amount: Tulon suuruus
+            description: Kuvaus tulosta
+        Returns:
+            budjetin nykyinen tilanne
+        """
+
+        expence = Expence(expence, amount, description)
+
+        expences = self._budget_repository.add_expence(expence)
+        
+        total = 0
+        for i in expences:
+            total += int(i.amount)
+        return total
 
 
 
 budget = BudgetService()
-
-print(budget.add_expence(10))
-

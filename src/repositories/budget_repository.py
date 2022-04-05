@@ -1,3 +1,4 @@
+from pathlib import Path
 from config import BUDGET_FILE_PATH
 from entities.expence import Expence
 
@@ -30,13 +31,17 @@ class BudgetRepository:
 
         Args:
             expence: menoa tai tuloa kuvaava olio
+        Returns:
+            menot ja tulot
         """
 
         expences = self.find_all()
 
         expences.append(expence)
 
-        self._write()
+        self._write(expences)
+
+        return expences
 
     def find_all(
             self
@@ -49,6 +54,7 @@ class BudgetRepository:
 
 
         return self._read()
+
     def _read(
             self
     ):
@@ -62,7 +68,7 @@ class BudgetRepository:
                 p = row.split(';')
 
                 expence_id = p[0]
-                expence_desciption = p[1]
+                expence_description = p[1]
                 expence_amount = p[2]
 
                 expences.append(
@@ -85,7 +91,7 @@ class BudgetRepository:
         
         with open(self._file_path, 'w') as file:
             for expence in expences:
-                line = f'{expence.id};{expence.expence};{expence.amount}'
+                line = f'{expence.expence_id};{expence.expence};{expence.amount}'
 
                 file.write(line+'\n')
 
