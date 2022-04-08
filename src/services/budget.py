@@ -2,6 +2,7 @@ from entities.expence import Expence
 
 from repositories.budget_repository import budget_repository
 
+
 class BudgetService:
     def __init__(
             self
@@ -10,7 +11,7 @@ class BudgetService:
         """
 
         self._budget_repository = budget_repository
-    
+
     def add_expence(
             self,
             description,
@@ -25,7 +26,7 @@ class BudgetService:
         Returns:
             budjetin nykyisen tilanteen
         """
-        amount *= -1 
+        amount *= -1
         expence = Expence(expence, amount, description)
 
         expences = self._budget_repository.add_expence(expence)
@@ -34,7 +35,7 @@ class BudgetService:
         for i in expences:
             total += int(i.amount)
         return total
-    
+
     def add_income(
             self,
             description,
@@ -53,12 +54,11 @@ class BudgetService:
         expence = Expence(expence, amount, description)
 
         expences = self._budget_repository.add_expence(expence)
-        
+
         total = 0
         for i in expences:
             total += int(i.amount)
         return total
-
 
 
 budget = BudgetService()

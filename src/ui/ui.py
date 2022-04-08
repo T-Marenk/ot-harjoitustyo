@@ -1,45 +1,51 @@
-from services.budget import budget 
+from tkinter import Tk, ttk
+from ui.main_view import MainView
+from ui.expence_view import AddExpenceView
 
-ORDERS = { 
-        "x": "lopeta x",
-        "1": "Lisää meno 1",
-        "2": "Lisää tulo 2"
-}
+class UI:
+    """Graafisesta käyttöliittymästä hoitava luokka
+    """
 
-class BudgetApp:
-    def __init__(self):
-
-        self._service = budget
+    def __init__(
+            self,
+            root
+    ):
+        self._root = root
+        self._current_view = None
 
     def start(self):
-        self._print_guide()
-        
-        while True:
-            order = input("Komento: ")
-            if order == 'x':
-                break
-            elif order == '1':
-                self._add_expence()
-            elif order == '2':
-                self._add_income()
-
-    def _print_guide(self):
-        
-        print("Komennot")
-
-        for i in ORDERS:
-            print(ORDERS[i])
-
-    def _add_expence(self):
-        des = input("Anna kuvaus menosta: ")
-        amount = int(input("Määrä euroina: "))
-
-        print(self._service.add_expence(des, amount,))
-
-    def _add_income(self):
-        des = input("Anna kuvaus menosta: ")
-        amount = input("Määrä euroina: ")
-
-        print(self._service.add_income(des, amount))
-
+        self._show_main_page()
     
+    def _hide_current_view(self):
+        if self._current_view:
+            self._current_view.destroy()
+        
+        self._current_view = None
+
+    def _handle_view_switch(
+            self,
+            view_switch
+    ):
+        if view_switch == 'add_expence':
+            self._add_expence_page()
+
+
+    def _show_main_page(self):
+        self._hide_current_view()
+
+        self._current_view = MainView(
+                self._root,
+                self._handle_view_switch
+        )
+
+        self._current_view.pack()
+
+    def _add_expence_page(self):
+        self._hide_current_view()
+        
+        self._current_view = AddExpenceView(
+                self._root,
+                self._handle_view_switch
+        )
+         
+        self._current_view.pack()

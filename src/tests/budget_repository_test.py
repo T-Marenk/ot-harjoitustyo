@@ -2,6 +2,7 @@ import unittest
 from repositories.budget_repository import budget_repository
 from entities.expence import Expence
 
+
 class TestBudgetRepository(unittest.TestCase):
     def setUp(self):
         budget_repository.delete_all()
@@ -15,4 +16,3 @@ class TestBudgetRepository(unittest.TestCase):
         self.assertEqual(expences[0].expence, 'True')
         self.assertEqual(expences[0].amount, '-2')
         self.assertEqual(expences[0].description, 'Cola')
-

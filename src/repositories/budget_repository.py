@@ -2,7 +2,8 @@ from pathlib import Path
 from config import BUDGET_FILE_PATH
 from entities.expence import Expence
 
-class BudgetRepository: 
+
+class BudgetRepository:
     """Luokka, joka vastaa sovelluksen yhteydestä budjetti tietoihin
     """
 
@@ -47,14 +48,13 @@ class BudgetRepository:
             self
     ):
         """Hakee tiedostosta kaikki menot
-        
+
         Returns:
             Palauttaa kaikki menot ja tulot
         """
 
-
         return self._read()
-    
+
     def delete_all(
             self
     ):
@@ -67,20 +67,21 @@ class BudgetRepository:
 
         self._file_exists()
 
-        with open(self._file_path) as file:
+        with open(self._file_path, 'r', encoding='utf-8') as file:
             for row in file:
                 row = row.replace('\n', "")
-                p = row.split(';')
+                parts = row.split(';')
 
-                expence_id = p[0]
-                expence = p[1]
-                expence_amount = p[2]
-                expence_description = p[3]
+                expence_id = parts[0]
+                expence = parts[1]
+                expence_amount = parts[2]
+                expence_description = parts[3]
 
                 expences.append(
-                        Expence(expence, expence_amount, expence_description, expence_id)
-                    )
-    
+                    Expence(expence, expence_amount,
+                            expence_description, expence_id)
+                )
+
         return expences
 
     def _write(
@@ -88,17 +89,19 @@ class BudgetRepository:
             expences
     ):
         """Tiedostoon kirjoittava osa
-        
+
         Args:
             expences: menot ja tulot jotka kirjoitetaan tiedostoon
         """
 
         self._file_exists()
-        
-        with open(self._file_path, 'w') as file:
+
+        with open(self._file_path, 'w', encoding='utf-8') as file:
             for expence in expences:
-                line = f'{expence.expence_id};{expence.expence};{expence.amount};{expence.description}'
+                line = f'{expence.expence_id};{expence.expence};{expence.amount}' \
+                        ';{expence.description}'
 
                 file.write(line+'\n')
+
 
 budget_repository = BudgetRepository(BUDGET_FILE_PATH)

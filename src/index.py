@@ -1,9 +1,15 @@
-from ui.ui import BudgetApp
+from ui.ui import UI
+from tkinter import Tk
 
 def main():
-    app = BudgetApp()
+    window = Tk()
+    window.title("Budget right")
 
-    app.start()
+    ui = UI(window)
+    ui.start()
+
+    window.mainloop()
+
 
 if __name__ == "__main__":
     main()

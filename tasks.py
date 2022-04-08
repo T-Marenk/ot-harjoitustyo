@@ -1,10 +1,6 @@
 from invoke import task
 
 @task
-def foo(ctx):
-    print("bar")
-
-@task
 def start(ctx):
     ctx.run("python3 src/index.py", pty=True)
 
@@ -20,3 +16,7 @@ def coverage(ctx):
 @task(coverage)
 def coverage_report(ctx):
     ctx.run("coverage html", pty=True)
+
+@task
+def format(ctx):
+    ctx.run("autopep8 --in-place --recursive src", pty=True)

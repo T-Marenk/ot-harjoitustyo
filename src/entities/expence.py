@@ -1,5 +1,6 @@
 import uuid
 
+
 class Expence:
     """Luokka, jonka avulla kuvastetaan yksittäistä menoa tai tuloa
     """
@@ -12,7 +13,7 @@ class Expence:
             expence_id=None
     ):
         """Luokan konstrukti, joka luo menon tai tulon
-        
+
         Args:
             expence: totuusarvo, joka kertoo, onko kyseessä tulo vai meno
             amount: menon tai tulon määrä
