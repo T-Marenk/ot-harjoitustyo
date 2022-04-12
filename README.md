@@ -10,7 +10,9 @@ Sovellusksen tarkoitus on auttaa käyttäjiä seuraamaan rahankäyttöään ja a
 
 [tuntikirjanpito.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/tuntikirjapito.md)
 
-[changelog.md](TODO)
+[changelog.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/changelog.md)
+
+[arkkitehtuuri.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
 
 ## Nykyinen tilanne
 
