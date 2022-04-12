@@ -16,3 +16,4 @@
   - Lisätty UserRepository, joka vastaa yhteydestä tietokantaan
 - Käyttöliittymässä pystyy näkemään lisätyt menot ja tulot
 - Sqlite tietokanta, johon tallennetaan käyttäjien tieto
+- Testien määrää lisätty, aloitettu BudgetService luokan testaaminen
