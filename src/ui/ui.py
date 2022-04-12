@@ -1,6 +1,7 @@
-from tkinter import Tk, ttk
+from tkinter import ttk
 from ui.main_view import MainView
 from ui.expence_view import AddExpenceView
+from ui.income_view import AddIncomeView
 
 class UI:
     """Graafisesta käyttöliittymästä hoitava luokka
@@ -28,7 +29,10 @@ class UI:
     ):
         if view_switch == 'add_expence':
             self._add_expence_page()
-
+        elif view_switch == 'main_view':
+            self._show_main_page()
+        elif view_switch == 'add_income':
+            self._add_income_page()
 
     def _show_main_page(self):
         self._hide_current_view()
@@ -48,4 +52,14 @@ class UI:
                 self._handle_view_switch
         )
          
+        self._current_view.pack()
+
+    def _add_income_page(self):
+        self._hide_current_view()
+
+        self._current_view = AddIncomeView(
+                self._root,
+                self._handle_view_switch
+        )
+
         self._current_view.pack()
