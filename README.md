@@ -28,7 +28,7 @@ Toiminnassa olevat ominaisuudet
 Aloitetut toiminnot, mutta hyvin keskeneräiset
 
 - Käyttäjät
-- 
+
 Puuttuvat toiminnot
 
 - Menojen ja tulojen poisto
