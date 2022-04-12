@@ -2,6 +2,7 @@ from entities.expence import Expence
 
 from repositories.budget_repository import budget_repository
 
+from repositories.user_repository import user_repository
 
 class BudgetService:
     def __init__(
@@ -10,6 +11,8 @@ class BudgetService:
         """Luokan konstrukti
         """
 
+        self._user = None
+        self._user_repository = user_repository
         self._budget_repository = budget_repository
 
     def add_expence(
@@ -33,9 +36,24 @@ class BudgetService:
 
         total = 0
         for i in expences:
-            total += int(i.amount)
+            total += float(i.amount)
         return total
+    
+    def create_user(
+            self,
+            username,
+            password
+    ):
+        is_user = self._user_repository.find_user(username)
 
+        if is_user:
+            raise UserError('User already exists')
+        
+        user = User(username, password)
+
+        self._user_repository.create_user(user)
+
+    
     def add_income(
             self,
             description,
@@ -57,8 +75,28 @@ class BudgetService:
 
         total = 0
         for i in expences:
-            total += int(i.amount)
+            total += float(i.amount)
         return total
+    def find_all(
+            self
+    ):
+        """Hakee kaikki menot ja tulot
+        """
 
+        expences = self._budget_repository.find_all()
 
-budget = BudgetService()
+        return expences
+
+    def delete_expence(
+            self,
+            id
+    ):
+        pass
+        #TODO
+
+    def delete_all(
+            self
+    ):
+        budget_repository.delete_all()
+
+budget_service = BudgetService()
