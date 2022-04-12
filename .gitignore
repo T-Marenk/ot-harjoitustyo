@@ -2,6 +2,3 @@
 __pycache__
 .coverage
 htmlcov
-
-data/expences.csv
-data/expences-test.csv

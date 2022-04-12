@@ -1,12 +1,13 @@
 from entities.expence import Expence
 
-from repositories.budget_repository import budget_repository
+from repositories.budget_repository import budget_repository as default_budget_repository
 
 from repositories.user_repository import user_repository
 
 class BudgetService:
     def __init__(
-            self
+            self,
+            budget_repository=default_budget_repository
     ):
         """Luokan konstrukti
         """
@@ -33,11 +34,6 @@ class BudgetService:
         expence = Expence(expence, amount, description)
 
         expences = self._budget_repository.add_expence(expence)
-
-        total = 0
-        for i in expences:
-            total += float(i.amount)
-        return total
     
     def create_user(
             self,
@@ -77,6 +73,7 @@ class BudgetService:
         for i in expences:
             total += float(i.amount)
         return total
+
     def find_all(
             self
     ):
@@ -86,6 +83,17 @@ class BudgetService:
         expences = self._budget_repository.find_all()
 
         return expences
+    def find_expence(
+            self
+    ):
+        pass
+        #TODO
+
+    def find_income(
+            self
+    ):
+        pass
+        #TODO
 
     def delete_expence(
             self,

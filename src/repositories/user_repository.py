@@ -1,7 +1,7 @@
 from database_connection import get_database_connection
 
 def get_user(row):
-    return User(row['username'], row['password'] if row else None
+    return User(row['username'], row['password']) if row else None
 
 class UserRepository:
     """Käyttäjä tietokannan yhteydestä vastaava luokka
