@@ -3,6 +3,7 @@ from ui.main_view import MainView
 from ui.expence_view import AddExpenceView
 from ui.income_view import AddIncomeView
 
+
 class UI:
     """Graafisesta käyttöliittymästä hoitava luokka
     """
@@ -16,11 +17,11 @@ class UI:
 
     def start(self):
         self._show_main_page()
-    
+
     def _hide_current_view(self):
         if self._current_view:
             self._current_view.destroy()
-        
+
         self._current_view = None
 
     def _handle_view_switch(
@@ -38,28 +39,28 @@ class UI:
         self._hide_current_view()
 
         self._current_view = MainView(
-                self._root,
-                self._handle_view_switch
+            self._root,
+            self._handle_view_switch
         )
 
         self._current_view.pack()
 
     def _add_expence_page(self):
         self._hide_current_view()
-        
+
         self._current_view = AddExpenceView(
-                self._root,
-                self._handle_view_switch
+            self._root,
+            self._handle_view_switch
         )
-         
+
         self._current_view.pack()
 
     def _add_income_page(self):
         self._hide_current_view()
 
         self._current_view = AddIncomeView(
-                self._root,
-                self._handle_view_switch
+            self._root,
+            self._handle_view_switch
         )
 
         self._current_view.pack()

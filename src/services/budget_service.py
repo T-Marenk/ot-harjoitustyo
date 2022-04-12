@@ -33,23 +33,15 @@ class BudgetService:
         amount *= -1
         expence = Expence(expence, amount, description)
 
-        expences = self._budget_repository.add_expence(expence)
-    
+        self._budget_repository.add_expence(expence)
+
     def create_user(
             self,
             username,
             password
     ):
-        is_user = self._user_repository.find_user(username)
+        pass
 
-        if is_user:
-            raise UserError('User already exists')
-        
-        user = User(username, password)
-
-        self._user_repository.create_user(user)
-
-    
     def add_income(
             self,
             description,
@@ -67,12 +59,7 @@ class BudgetService:
 
         expence = Expence(expence, amount, description)
 
-        expences = self._budget_repository.add_expence(expence)
-
-        total = 0
-        for i in expences:
-            total += float(i.amount)
-        return total
+        self._budget_repository.add_expence(expence)
 
     def find_all(
             self
@@ -83,28 +70,26 @@ class BudgetService:
         expences = self._budget_repository.find_all()
 
         return expences
+
     def find_expence(
             self
     ):
         pass
-        #TODO
 
     def find_income(
             self
     ):
         pass
-        #TODO
 
     def delete_expence(
-            self,
-            id
+            self
     ):
         pass
-        #TODO
 
     def delete_all(
             self
     ):
-        budget_repository.delete_all()
+        self._budget_repository.delete_all()
+
 
 budget_service = BudgetService()

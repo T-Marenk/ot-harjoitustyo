@@ -1,6 +1,7 @@
 from ui.ui import UI
 from tkinter import Tk
 
+
 def main():
     window = Tk()
     window.title("Budget right")

@@ -42,13 +42,11 @@ class BudgetRepository:
         self._write(expences)
 
         return expences
-    
+
     def delete_expence(
             self,
-            id
     ):
         pass
-        #TODO
 
     def find_all(
             self
@@ -105,7 +103,7 @@ class BudgetRepository:
         with open(self._file_path, 'w', encoding='utf-8') as file:
             for expence in expences:
                 line = f'{expence.expence_id};{expence.expence};{expence.amount};{expence.description}'
-                
+
                 file.write(line+'\n')
 
 
