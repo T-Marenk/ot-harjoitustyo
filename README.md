@@ -10,22 +10,27 @@ Sovellusksen tarkoitus on auttaa käyttäjiä seuraamaan rahankäyttöään ja a
 
 [tuntikirjanpito.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/tuntikirjapito.md)
 
-[changelog.md](TODO)
+[changelog.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/changelog.md)
+
+[arkkitehtuuri.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
 
 ## Nykyinen tilanne
 
-Sovellus on vasta hyvin alkuvaiheissa. Väliaikaisesti käyttöliittymänä toimii yksinkertainen testiliittymä, jolla pystyy testaamaan nykyisiä toimintoja. Tämä vaihtuu myöhemmin graafiseksi käyttöliittymäksi
+Sovellusta pystyy käyttämään graafisessa käyttöliitymässä, jossa pystyy näkemään menot ja tulot sekä lisäämään niitä
 
 Toiminnassa olevat ominaisuudet
 
 - Menojen lisääminen sovellukseen
 - Tulojen lisääminen sovellukseen
 - Menot ja tulot tallennetaan tiedostoon, josta ne voi lukea seuraavalla suorituskerralla myös
+- Menot ja tulot nähtävissä sovelluksessa
 
-Puuttuvat toiminnot
+Aloitetut toiminnot, mutta hyvin keskeneräiset
 
 - Käyttäjät
-- Menojen ja tulojen tarkastelu
+- 
+Puuttuvat toiminnot
+
 - Menojen ja tulojen poisto
 
 ## Asennus
@@ -36,7 +41,13 @@ Puuttuvat toiminnot
 poetry install
 ```
 
-2. Sovelluksen saa käyntiin komennolla:
+2. Loput vaaditut aloitustoimenpiteet komennolla:
+
+```bash
+poetry run invoke build
+```
+
+3. Sovelluksen saa käyntiin komennolla:
 
 ```bash
 poetry run invoke start
