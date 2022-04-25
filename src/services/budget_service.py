@@ -54,7 +54,8 @@ class BudgetService:
             username,
             password
     ):
-        pass
+
+        self._user_repository.create_user(username, password)
 
     def add_income(
             self,

@@ -9,3 +9,5 @@
 |8.4.2022|3 tuntia| Tutustuminen tkinteriin ja harjoittelu|
 |        |1 tunti | Graafisen käyttöliittymän pohja ja perustoimintoja|
 |12.4.2022|7 tuntia| Käyttöliittymän edistäminen niin, että siinä on perustoiminnallisuudet menojen ja tulojen lisäämiseen ja näkemiseen, pohja käyttäjille|
+|25.4.2022|2 tuntia| Kirjautuminen|
+| Yhteensä|22 tuntia| |

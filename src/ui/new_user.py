@@ -1,24 +1,20 @@
 from tkinter import ttk, constants
 from services.budget_service import budget_service
 
-class LoginView:
-    """Kirjautumisnäkymää luonnehtiva luokka
-    """
-
+class RegisterView:
     def __init__(
             self,
             root,
-            switch,
+            login_view
     ):
         self._root = root
+        self._switch = login_view
         self._frame = None
-        self._switch = switch
         self._username = None
         self._password = None
-        self._login_fail = False
 
         self._initialize()
-    
+
     def pack(
             self
     ):
@@ -32,38 +28,30 @@ class LoginView:
     def _initialize(
             self
     ):
-        self._frame = ttk.Frame(master=self._root)
+        self._frame = ttk.Frame(master=self._root) 
+        label = ttk.Label(master=self._frame, text="Luo uusi käyttäjä")
         username_label = ttk.Label(master=self._frame, text="Käyttäjänimi:")
         self._username = ttk.Entry(master=self._frame)
 
         password_label = ttk.Label(master=self._frame, text="Salasana:")
         self._password = ttk.Entry(master=self._frame)
         
-        login_button = ttk.Button(master=self._frame, text="Kirjaudu sisään", command=self._login)
-        new_button = ttk.Button(master=self._frame, text="Uusi käyttäjä", command=lambda: self._switch('register'))
-
-        if self._login_fail:
-            fail_label = ttk.Label(master=self._frame, text="Kirjautuminen epäonnistui")
+        create = ttk.Button(master=self._frame, text="Luo käyttäjä", command=self._create)
+        back_button = ttk.Button(master=self._frame, text="Takaisin", command=lambda: self._switch())
 
         username_label.grid(row=0, column=0)
         self._username.grid(row=0, column=1, sticky=constants.EW)
         password_label.grid(row=1, column=0)
         self._password.grid(row=1, column=1, sticky=constants.EW)
-        login_button.grid(row=2, column=0, sticky=constants.EW)
-        new_button.grid(row=2, column=1, sticky=constants.EW)
-        if self._login_fail:
-            fail_label.grid(row=3, column=0)
+        create.grid(row=2, column=0, sticky=constants.EW)
+        back_button.grid(row=3, column=0, sticky=constants.EW)
 
-    def _login(
+    def _create(
             self
     ):
         username = self._username.get()
         password = self._password.get()
-        fail = budget_service.login(username, password)
-        if fail:
-            self._login_fail = True
-            self.destroy()
-            self._initialize()
-            self.pack()
-        else:
-            self._switch('main_view')
+
+        budget_service.create_user(username, password)
+
+        self._switch()

@@ -3,6 +3,7 @@ from ui.main_view import MainView
 from ui.expence_view import AddExpenceView
 from ui.income_view import AddIncomeView
 from ui.login import LoginView
+from ui.new_user import RegisterView
 
 
 class UI:
@@ -35,6 +36,10 @@ class UI:
             self._show_main_page()
         elif view_switch == 'add_income':
             self._add_income_page()
+        elif view_switch == 'register':
+            self._register_view()
+        elif view_switch == 'login':
+            self._login_view()
 
     def _show_main_page(self):
         self._hide_current_view()
@@ -70,7 +75,19 @@ class UI:
 
         self._current_view = LoginView(
                 self._root,
-                self._show_main_page,
+                self._handle_view_switch
+        )
+
+        self._current_view.pack()
+
+    def _register_view(
+            self
+    ):
+        self._hide_current_view()
+        
+        self._current_view = RegisterView(
+                self._root,
+                self._login_view
         )
 
         self._current_view.pack()
