@@ -67,7 +67,15 @@ class ListBudget:
 
 
 class MainView:
-    def __init__(self, root, handle_button):
+    """Sovelluksen päänäkymää luonnehtiva luokka
+    """
+
+    def __init__(
+            self,
+            root,
+            handle_button
+    ):
+
         self._root = root
         self._frame = None
         self._list_budget_frame = None

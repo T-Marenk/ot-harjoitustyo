@@ -2,6 +2,7 @@ from tkinter import ttk
 from ui.main_view import MainView
 from ui.expence_view import AddExpenceView
 from ui.income_view import AddIncomeView
+from ui.login import LoginView
 
 
 class UI:
@@ -16,7 +17,7 @@ class UI:
         self._current_view = None
 
     def start(self):
-        self._show_main_page()
+        self._login_view()
 
     def _hide_current_view(self):
         if self._current_view:
@@ -42,7 +43,6 @@ class UI:
             self._root,
             self._handle_view_switch
         )
-
         self._current_view.pack()
 
     def _add_expence_page(self):
@@ -61,6 +61,16 @@ class UI:
         self._current_view = AddIncomeView(
             self._root,
             self._handle_view_switch
+        )
+
+        self._current_view.pack()
+
+    def _login_view(self):
+        self._hide_current_view()
+
+        self._current_view = LoginView(
+                self._root,
+                self._show_main_page,
         )
 
         self._current_view.pack()

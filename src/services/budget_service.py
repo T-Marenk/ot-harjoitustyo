@@ -2,12 +2,13 @@ from entities.expence import Expence
 
 from repositories.budget_repository import budget_repository as default_budget_repository
 
-from repositories.user_repository import user_repository
+from repositories.user_repository import user_repository as default_user_repository
 
 class BudgetService:
     def __init__(
             self,
-            budget_repository=default_budget_repository
+            budget_repository=default_budget_repository,
+            user_repository=default_user_repository
     ):
         """Luokan konstrukti
         """
@@ -34,6 +35,19 @@ class BudgetService:
         expence = Expence(expence, amount, description)
 
         self._budget_repository.add_expence(expence)
+    
+    def login(
+            self,
+            username,
+            password
+    ):
+        user = self._user_repository.find_user(username)
+        if not user:
+            return True
+        if user.password == password:
+            self._user = user
+            return False
+        return True
 
     def create_user(
             self,
