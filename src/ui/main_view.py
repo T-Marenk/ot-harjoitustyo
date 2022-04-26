@@ -135,7 +135,7 @@ class MainView:
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
         self._list_budget_frame = ttk.Frame(master=self._frame)
-        label = ttk.Label(master=self._frame, text="Hei {{ self._user.usrename }}! Mitä haluat tehdä?")
+        label = ttk.Label(master=self._frame, text=f"Hei { self._user.username }! Mitä haluat tehdä?")
 
         add_expence_label = ttk.Label(master=self._frame, text="Uusi meno:")
         add_expence_button = ttk.Button(
