@@ -13,6 +13,7 @@ class AddIncomeView:
         self._handle_button = handle_button
         self._income_amount = None
         self._income_name = None
+        self._user = budget_service.get_user()
 
         self._initialize()
 
@@ -51,7 +52,7 @@ class AddIncomeView:
     def _add_income(self):
         amount = float(self._income_amount.get())
         name = self._income_name.get()
-        budget_service.add_income(name, amount, False)
+        budget_service.add_income(name, amount, self._user.username, False)
 
         self._income_name = None
         self._income_amount = None

@@ -109,6 +109,11 @@ class MainView:
     ):
         budget_service.delete_expence(expence_id)
         self._initialize_budget()
+    
+    def _logout(self):
+        budget_service.logout()
+        
+        self._handle_button('login')
 
     def _initialize_budget(
             self
@@ -126,11 +131,11 @@ class MainView:
         )
 
         self._list_budget_view.pack()
-
+    
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
         self._list_budget_frame = ttk.Frame(master=self._frame)
-        label = ttk.Label(master=self._frame, text="Mitä haluat tehdä?")
+        label = ttk.Label(master=self._frame, text="Hei {{ self._user.usrename }}! Mitä haluat tehdä?")
 
         add_expence_label = ttk.Label(master=self._frame, text="Uusi meno:")
         add_expence_button = ttk.Button(
@@ -142,6 +147,12 @@ class MainView:
         )
         add_income_button = ttk.Button(
             master=self._frame, text="Lisää tulo", command=lambda: self._handle_button('add_income'))
+        
+        logout_button = ttk.Button(
+                master = self._frame,
+                text="Kirjaudu ulos",
+                command=lambda: self._logout()
+        )
 
         self._initialize_budget()
 
@@ -179,9 +190,16 @@ class MainView:
             padx=3,
             pady=3
         )
+        
+        logout_button.grid(
+                row=3,
+                column=0,
+                columnspan=3,
+                sticky=constants.EW
+        )
 
         self._list_budget_frame.grid(
-            row=3,
+            row=4,
             column=0,
             columnspan=2,
             sticky=constants.EW

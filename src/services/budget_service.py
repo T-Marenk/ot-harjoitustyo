@@ -53,6 +53,12 @@ class BudgetService:
             self._user = user
             return False
         return True
+    
+    def logout(
+            self
+    ):
+        
+        self._user = None
 
     def create_user(
             self,
