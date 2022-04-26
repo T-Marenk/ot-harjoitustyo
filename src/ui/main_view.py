@@ -6,11 +6,13 @@ class ListBudget:
     def __init__(
             self,
             root,
-            budget
+            budget,
+            delete_expence
     ):
         self._root = root
         self._budget = budget
         self._frame = None
+        self._delete_expence = delete_expence
 
         self._initialize()
 
@@ -29,8 +31,10 @@ class ListBudget:
             total
     ):
         label_frame = ttk.Frame(master=self._frame)
-        label = ttk.Label(master=label_frame,
-                          text=f'Tämän hetkinen budjetti: {total} €')
+        label = ttk.Label(
+                master=label_frame,
+                text=f'Tämän hetkinen budjetti: {total:.2f} €'
+        )
         label.grid(
             row=0,
             column=0
@@ -44,10 +48,15 @@ class ListBudget:
         expence_frame = ttk.Frame(master=self._frame)
         label = ttk.Label(master=expence_frame, text=f'{expence.description}:')
         amount = ttk.Label(master=expence_frame, text=f'{expence.amount} €')
+        delete_button = ttk.Button(
+                master=expence_frame,
+                text='Poista',
+                command=lambda: self._delete_expence(expence.expence_id)
+        )
 
         label.grid(row=0, column=0, sticky=constants.W, padx=5, pady=5)
         amount.grid(row=0, column=1, sticky=constants.W, padx=1, pady=1)
-
+        delete_button.grid(row=0, column=2, sticky=constants.EW)
         expence_frame.grid_columnconfigure(0, weight=1)
         expence_frame.pack(fill=constants.X)
 
@@ -90,6 +99,13 @@ class MainView:
     def destroy(self):
         self._frame.destroy()
 
+    def _delete_expence(
+            self,
+            expence_id
+    ):
+        budget_service.delete_expence(expence_id)
+        self._initialize_budget()
+
     def _initialize_budget(
             self
     ):
@@ -100,7 +116,8 @@ class MainView:
 
         self._list_budget_view = ListBudget(
             self._list_budget_frame,
-            budget
+            budget,
+            self._delete_expence
         )
 
         self._list_budget_view.pack()

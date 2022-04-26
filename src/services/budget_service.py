@@ -97,9 +97,11 @@ class BudgetService:
         pass
 
     def delete_expence(
-            self
+            self,
+            expence_id
     ):
-        pass
+
+       self._budget_repository.delete_expence(expence_id)
 
     def delete_all(
             self

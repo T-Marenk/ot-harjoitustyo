@@ -45,8 +45,16 @@ class BudgetRepository:
 
     def delete_expence(
             self,
+            id
     ):
-        pass
+        expences = self._read()
+
+        for expence in expences:
+            if expence.expence_id == id:
+                expences.remove(expence)
+                break
+
+        self._write(expences)
 
     def find_all(
             self
@@ -62,6 +70,7 @@ class BudgetRepository:
     def delete_all(
             self
     ):
+
         self._write([])
 
     def _read(
