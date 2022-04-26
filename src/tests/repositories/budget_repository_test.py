@@ -7,7 +7,7 @@ class TestBudgetRepository(unittest.TestCase):
     def setUp(self):
         budget_repository.delete_all()
         self.expence1 = Expence(True, -2, 'Cola', 'Tyyppi')
-        self.income1 = Expence(False, 432, 'Pay', 'Tyyppi') 
+        self.income1 = Expence(False, 432, 'Pay', 'Tyyppi')
 
     def test_add_expence_correctly(self):
         budget_repository.add_expence(self.expence1)
@@ -16,7 +16,7 @@ class TestBudgetRepository(unittest.TestCase):
 
         self.assertEqual(expences[0].amount, '-2')
 
-    def test_add_expence_marked_correctly(self): 
+    def test_add_expence_marked_correctly(self):
         budget_repository.add_expence(self.expence1)
 
         expences = budget_repository.find_all()

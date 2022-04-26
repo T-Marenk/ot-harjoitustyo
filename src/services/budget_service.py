@@ -4,6 +4,7 @@ from repositories.budget_repository import budget_repository as default_budget_r
 
 from repositories.user_repository import user_repository as default_user_repository
 
+
 class BudgetService:
     def __init__(
             self,
@@ -16,7 +17,7 @@ class BudgetService:
         self._user = None
         self._user_repository = user_repository
         self._budget_repository = budget_repository
-    
+
     def get_user(self):
         return self._user
 
@@ -40,7 +41,7 @@ class BudgetService:
         expence = Expence(expence, amount, description, username)
 
         self._budget_repository.add_expence(expence)
-    
+
     def login(
             self,
             username,
@@ -53,11 +54,11 @@ class BudgetService:
             self._user = user
             return False
         return True
-    
+
     def logout(
             self
     ):
-        
+
         self._user = None
 
     def create_user(
@@ -67,7 +68,7 @@ class BudgetService:
     ):
 
         self._user_repository.create_user(username, password)
- 
+
     def find_all(
             self
     ):
@@ -93,7 +94,7 @@ class BudgetService:
             expence_id
     ):
 
-       self._budget_repository.delete_expence(expence_id)
+        self._budget_repository.delete_expence(expence_id)
 
     def delete_all(
             self

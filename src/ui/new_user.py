@@ -1,6 +1,7 @@
 from tkinter import ttk, constants
 from services.budget_service import budget_service
 
+
 class RegisterView:
     def __init__(
             self,
@@ -28,16 +29,18 @@ class RegisterView:
     def _initialize(
             self
     ):
-        self._frame = ttk.Frame(master=self._root) 
+        self._frame = ttk.Frame(master=self._root)
         label = ttk.Label(master=self._frame, text="Luo uusi käyttäjä")
         username_label = ttk.Label(master=self._frame, text="Käyttäjänimi:")
         self._username = ttk.Entry(master=self._frame)
 
         password_label = ttk.Label(master=self._frame, text="Salasana:")
         self._password = ttk.Entry(master=self._frame)
-        
-        create = ttk.Button(master=self._frame, text="Luo käyttäjä", command=self._create)
-        back_button = ttk.Button(master=self._frame, text="Takaisin", command=lambda: self._switch())
+
+        create = ttk.Button(master=self._frame,
+                            text="Luo käyttäjä", command=self._create)
+        back_button = ttk.Button(
+            master=self._frame, text="Takaisin", command=lambda: self._switch())
 
         username_label.grid(row=0, column=0)
         self._username.grid(row=0, column=1, sticky=constants.EW)

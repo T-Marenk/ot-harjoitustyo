@@ -1,6 +1,7 @@
 from tkinter import ttk, constants
 from services.budget_service import budget_service
 
+
 class LoginView:
     """Kirjautumisnäkymää luonnehtiva luokka
     """
@@ -18,7 +19,7 @@ class LoginView:
         self._login_fail = False
 
         self._initialize()
-    
+
     def pack(
             self
     ):
@@ -38,12 +39,15 @@ class LoginView:
 
         password_label = ttk.Label(master=self._frame, text="Salasana:")
         self._password = ttk.Entry(master=self._frame)
-        
-        login_button = ttk.Button(master=self._frame, text="Kirjaudu sisään", command=self._login)
-        new_button = ttk.Button(master=self._frame, text="Uusi käyttäjä", command=lambda: self._switch('register'))
+
+        login_button = ttk.Button(
+            master=self._frame, text="Kirjaudu sisään", command=self._login)
+        new_button = ttk.Button(
+            master=self._frame, text="Uusi käyttäjä", command=lambda: self._switch('register'))
 
         if self._login_fail:
-            fail_label = ttk.Label(master=self._frame, text="Kirjautuminen epäonnistui")
+            fail_label = ttk.Label(
+                master=self._frame, text="Kirjautuminen epäonnistui")
 
         username_label.grid(row=0, column=0)
         self._username.grid(row=0, column=1, sticky=constants.EW)

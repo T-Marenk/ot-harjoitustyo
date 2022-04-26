@@ -34,8 +34,8 @@ class ListBudget:
     ):
         label_frame = ttk.Frame(master=self._frame)
         label = ttk.Label(
-                master=label_frame,
-                text=f'Tämän hetkinen budjetti: {total:.2f} €'
+            master=label_frame,
+            text=f'Tämän hetkinen budjetti: {total:.2f} €'
         )
         label.grid(
             row=0,
@@ -51,9 +51,9 @@ class ListBudget:
         label = ttk.Label(master=expence_frame, text=f'{expence.description}:')
         amount = ttk.Label(master=expence_frame, text=f'{expence.amount} €')
         delete_button = ttk.Button(
-                master=expence_frame,
-                text='Poista',
-                command=lambda: self._delete_expence(expence.expence_id)
+            master=expence_frame,
+            text='Poista',
+            command=lambda: self._delete_expence(expence.expence_id)
         )
 
         label.grid(row=0, column=0, sticky=constants.W, padx=5, pady=5)
@@ -109,10 +109,10 @@ class MainView:
     ):
         budget_service.delete_expence(expence_id)
         self._initialize_budget()
-    
+
     def _logout(self):
         budget_service.logout()
-        
+
         self._handle_button('login')
 
     def _initialize_budget(
@@ -131,11 +131,12 @@ class MainView:
         )
 
         self._list_budget_view.pack()
-    
+
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
         self._list_budget_frame = ttk.Frame(master=self._frame)
-        label = ttk.Label(master=self._frame, text=f"Hei { self._user.username }! Mitä haluat tehdä?")
+        label = ttk.Label(
+            master=self._frame, text=f"Hei { self._user.username }! Mitä haluat tehdä?")
 
         add_expence_label = ttk.Label(master=self._frame, text="Uusi meno:")
         add_expence_button = ttk.Button(
@@ -147,11 +148,11 @@ class MainView:
         )
         add_income_button = ttk.Button(
             master=self._frame, text="Lisää tulo", command=lambda: self._handle_button('add_income'))
-        
+
         logout_button = ttk.Button(
-                master = self._frame,
-                text="Kirjaudu ulos",
-                command=lambda: self._logout()
+            master=self._frame,
+            text="Kirjaudu ulos",
+            command=lambda: self._logout()
         )
 
         self._initialize_budget()
@@ -190,12 +191,12 @@ class MainView:
             padx=3,
             pady=3
         )
-        
+
         logout_button.grid(
-                row=3,
-                column=0,
-                columnspan=3,
-                sticky=constants.EW
+            row=3,
+            column=0,
+            columnspan=3,
+            sticky=constants.EW
         )
 
         self._list_budget_frame.grid(

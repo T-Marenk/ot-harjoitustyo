@@ -45,12 +45,13 @@ class BudgetRepository:
 
     def delete_expence(
             self,
-            id
+            e_id
     ):
         expences = self._read()
+        expences_copy = expences
 
-        for expence in expences:
-            if expence.expence_id == id:
+        for expence in expences_copy:
+            if expence.expence_id == e_id:
                 expences.remove(expence)
                 break
 
@@ -112,9 +113,10 @@ class BudgetRepository:
 
         with open(self._file_path, 'w', encoding='utf-8') as file:
             for expence in expences:
-                line = f'{expence.expence_id};{expence.expence};{expence.amount};{expence.description};{expence.username}'
+                line1 = f'{expence.expence_id};{expence.expence};{expence.amount};'
+                line2 = f'{expence.description};{expence.username}'
 
-                file.write(line+'\n')
+                file.write(line1+line2+'\n')
 
 
 budget_repository = BudgetRepository(BUDGET_FILE_PATH)

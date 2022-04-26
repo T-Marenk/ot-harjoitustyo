@@ -20,9 +20,10 @@ class FakeBudgetRepository:
         self
     ):
         return self.expences
-    
+
     def delete_all(self):
         self.expences = []
+
 
 class FakeUserRepository:
     def __init__(self, users=None):
@@ -31,11 +32,12 @@ class FakeUserRepository:
     def create_user(self, username, password):
         user = User(username, password)
         self.users.append(user)
-    
+
     def find_user(self, username):
         for user in self.users:
             if user.username == username:
                 return user
+
 
 class TestBudgetService(unittest.TestCase):
     def setUp(self):
@@ -43,12 +45,13 @@ class TestBudgetService(unittest.TestCase):
             FakeBudgetRepository(),
             FakeUserRepository()
         )
-         
-        self.budget_service.create_user('Tyyppi', '1234') 
+
+        self.budget_service.create_user('Tyyppi', '1234')
         self.budget_service.add_expence('Soda', 2, 'Tyyppi', True)
 
         self.budget_service.add_expence('Bread', 3.12, 'Henkilö', True)
-    def test_find_all_finds_all(self): 
+
+    def test_find_all_finds_all(self):
         expences = self.budget_service.find_all()
 
         self.assertEqual(len(expences), 2)
@@ -64,7 +67,7 @@ class TestBudgetService(unittest.TestCase):
         self.budget_service.login('Tyyppi', '1234')
 
         user = self.budget_service.get_user()
-       
+
         self.assertEqual(user.username, 'Tyyppi')
 
     def test_logout(self):

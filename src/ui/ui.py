@@ -74,8 +74,8 @@ class UI:
         self._hide_current_view()
 
         self._current_view = LoginView(
-                self._root,
-                self._handle_view_switch
+            self._root,
+            self._handle_view_switch
         )
 
         self._current_view.pack()
@@ -84,10 +84,10 @@ class UI:
             self
     ):
         self._hide_current_view()
-        
+
         self._current_view = RegisterView(
-                self._root,
-                self._login_view
+            self._root,
+            self._login_view
         )
 
         self._current_view.pack()

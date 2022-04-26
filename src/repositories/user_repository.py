@@ -1,6 +1,7 @@
 from database_connection import get_database_connection
 from entities.user import User
 
+
 def get_user(row):
     return User(row['username'], row['password']) if row else None
 
