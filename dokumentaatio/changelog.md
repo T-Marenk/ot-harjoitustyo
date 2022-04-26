@@ -17,3 +17,10 @@
 - Käyttöliittymässä pystyy näkemään lisätyt menot ja tulot
 - Sqlite tietokanta, johon tallennetaan käyttäjien tieto
 - Testien määrää lisätty, aloitettu BudgetService luokan testaaminen
+
+## Viikko 5
+
+- Sisään- ja uloskirjautuminen lisätty
+- Käyttäjän luominen mahdollista
+- Käyttäjä kohtaiset menot ja tulot
+- Testien määrää lisätty
