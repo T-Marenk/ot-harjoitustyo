@@ -23,6 +23,14 @@ class UserRepository:
             self,
             username
     ):
+        """Hakee tietyn käyttäjän tietokannasta
+
+        Args:
+            username: halutun käyttäjän käyttäjänimi
+        Returns:
+            Halutun käyttäjän, jos se löytyi tietokannasta
+        """
+
         cursor = self._connection.cursor()
 
         cursor.execute(
@@ -39,6 +47,12 @@ class UserRepository:
         username,
         password
     ):
+        """Luo uuden käyttäjän tietokantaan
+
+        Args:
+            username: käyttäjänimi uudelle käyttäjälle
+            password: salasana uudelle käyttäjälle
+        """
 
         cursor = self._connection.cursor()
 
@@ -52,6 +66,8 @@ class UserRepository:
     def delete_all(
         self,
     ):
+        """Poistaa kaikki käyttäjät tietokannasta
+        """
 
         cursor = self._connection.cursor()
 

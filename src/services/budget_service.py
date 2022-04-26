@@ -19,6 +19,12 @@ class BudgetService:
         self._budget_repository = budget_repository
 
     def get_user(self):
+        """Nykyisen käyttäjän haku
+
+        Returns:
+            nykyisen käyttäjän
+        """
+
         return self._user
 
     def add_expence(
@@ -33,9 +39,8 @@ class BudgetService:
         Args:
             amount: Menon suuruus
             description: Kuvaus menosta tai tulosta
-        Returns:
-            budjetin nykyisen tilanteen
         """
+
         if expence:
             amount *= -1
         expence = Expence(expence, amount, description, username)
@@ -47,6 +52,15 @@ class BudgetService:
             username,
             password
     ):
+        """Kirjaa käyttäjän sisään sovellukseen
+
+        Args:
+            username: käyttäjän käyttäjänimi
+            password: käyttäjän salasana
+        Returns:
+            totuusarvon, joka kertoo, onnistuiko sisään kirjautuminen
+        """
+
         user = self._user_repository.find_user(username)
         if not user:
             return True
@@ -58,6 +72,8 @@ class BudgetService:
     def logout(
             self
     ):
+        """Kirjaa käyttäjän ulos sovelluksesta
+        """
 
         self._user = None
 
@@ -66,6 +82,12 @@ class BudgetService:
             username,
             password
     ):
+        """Luo uuden käyttäjän sovellukseen
+
+        Args:
+            username: uuden käyttäjän käyttäjänimi
+            password: uuden käyttäjän salasana
+        """
 
         self._user_repository.create_user(username, password)
 
@@ -79,6 +101,26 @@ class BudgetService:
 
         return expences
 
+    def delete_expence(
+            self,
+            expence_id
+    ):
+        """Poistaa yhden menon/tulon
+
+        Args:
+            expence_id: Menon/tulon id
+        """
+
+        self._budget_repository.delete_expence(expence_id)
+
+    def delete_all(
+            self
+    ):
+        """Poistaa kaikki menot ja tulot
+        """
+
+        self._budget_repository.delete_all()
+
     def find_expence(
             self
     ):
@@ -88,18 +130,5 @@ class BudgetService:
             self
     ):
         pass
-
-    def delete_expence(
-            self,
-            expence_id
-    ):
-
-        self._budget_repository.delete_expence(expence_id)
-
-    def delete_all(
-            self
-    ):
-        self._budget_repository.delete_all()
-
 
 budget_service = BudgetService()

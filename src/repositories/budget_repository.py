@@ -22,6 +22,9 @@ class BudgetRepository:
     def _file_exists(
             self
     ):
+        """Varmistaa, että tiedosto on olemassa
+        """
+
         Path(self._file_path).touch()
 
     def add_expence(
@@ -47,6 +50,12 @@ class BudgetRepository:
             self,
             e_id
     ):
+        """Poistaa menon/tulon tiedostosta
+
+        Args:
+            e_id: Menon/tulon id
+        """
+
         expences = self._read()
         expences_copy = expences
 
@@ -71,12 +80,20 @@ class BudgetRepository:
     def delete_all(
             self
     ):
+        """Poistaa kaikki menot ja tulot
+        """
 
         self._write([])
 
     def _read(
             self
     ):
+        """Tiedostosta lukeva osa
+
+        Returns:
+            Menot ja tulot, jotka ovat tiedostossa
+        """
+
         expences = []
 
         self._file_exists()
