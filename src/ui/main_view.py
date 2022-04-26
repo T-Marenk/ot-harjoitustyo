@@ -7,12 +7,14 @@ class ListBudget:
             self,
             root,
             budget,
+            user,
             delete_expence
     ):
         self._root = root
         self._budget = budget
         self._frame = None
         self._delete_expence = delete_expence
+        self._user = user
 
         self._initialize()
 
@@ -65,14 +67,16 @@ class ListBudget:
         total = 0
 
         for expence in self._budget:
-            total += float(expence.amount)
+            if expence.username == self._user.username:
+                total += float(expence.amount)
 
         self._initialize_total(
             total
         )
 
         for expence in self._budget:
-            self._initialize_expence(expence)
+            if expence.username == self._user.username:
+                self._initialize_expence(expence)
 
 
 class MainView:
@@ -90,7 +94,7 @@ class MainView:
         self._list_budget_frame = None
         self._list_budget_view = None
         self._handle_button = handle_button
-
+        self._user = budget_service.get_user()
         self._initialize()
 
     def pack(self):
@@ -117,6 +121,7 @@ class MainView:
         self._list_budget_view = ListBudget(
             self._list_budget_frame,
             budget,
+            self._user,
             self._delete_expence
         )
 

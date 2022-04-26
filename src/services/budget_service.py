@@ -16,12 +16,16 @@ class BudgetService:
         self._user = None
         self._user_repository = user_repository
         self._budget_repository = budget_repository
+    
+    def get_user(self):
+        return self._user
 
     def add_expence(
             self,
             description,
             amount,
-            expence=True
+            username,
+            expence
     ):
         """Lisää menon budjettiin.
 
@@ -31,8 +35,9 @@ class BudgetService:
         Returns:
             budjetin nykyisen tilanteen
         """
-        amount *= -1
-        expence = Expence(expence, amount, description)
+        if expence:
+            amount *= -1
+        expence = Expence(expence, amount, description, username)
 
         self._budget_repository.add_expence(expence)
     
@@ -56,26 +61,7 @@ class BudgetService:
     ):
 
         self._user_repository.create_user(username, password)
-
-    def add_income(
-            self,
-            description,
-            amount,
-            expence=False
-    ):
-        """Lisää tulon budjettiin.
-
-        Args:
-            amount: Tulon suuruus
-            description: Kuvaus tulosta
-        Returns:
-            budjetin nykyinen tilanne
-        """
-
-        expence = Expence(expence, amount, description)
-
-        self._budget_repository.add_expence(expence)
-
+ 
     def find_all(
             self
     ):

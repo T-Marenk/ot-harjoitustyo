@@ -13,6 +13,7 @@ class AddExpenceView:
         self._handle_button = handle_button
         self._expence_amount = None
         self._expence_name = None
+        self._user = budget_service.get_user()
 
         self._initialize()
 
@@ -51,7 +52,7 @@ class AddExpenceView:
     def _add_expence(self):
         amount = float(self._expence_amount.get())
         name = self._expence_name.get()
-        budget_service.add_expence(name, amount, True)
+        budget_service.add_expence(name, amount, self._user.username, True)
 
         self._expence_name = None
         self._expence_amount = None

@@ -10,6 +10,7 @@ class Expence:
             expence,
             amount,
             description,
+            username,
             expence_id=None
     ):
         """Luokan konstrukti, joka luo menon tai tulon
@@ -19,9 +20,11 @@ class Expence:
             amount: menon tai tulon määrä
             expence_id: Menon tai tulon id:tä kuvaava osa. Luodaan automaattisesti uuid:llä
             description: Kuvaus tulosta tai menosta
+            username: Osa, joka kertoo mille käyttäjälle kyseinen meno kuuluu
         """
 
         self.expence = expence
         self.amount = amount
         self.description = description
         self.expence_id = expence_id or str(uuid.uuid4())
+        self.username = username

@@ -89,10 +89,11 @@ class BudgetRepository:
                 expence = parts[1]
                 expence_amount = parts[2]
                 expence_description = parts[3]
+                username = parts[4]
 
                 expences.append(
                     Expence(expence, expence_amount,
-                            expence_description, expence_id)
+                            expence_description, username, expence_id)
                 )
 
         return expences
@@ -111,7 +112,7 @@ class BudgetRepository:
 
         with open(self._file_path, 'w', encoding='utf-8') as file:
             for expence in expences:
-                line = f'{expence.expence_id};{expence.expence};{expence.amount};{expence.description}'
+                line = f'{expence.expence_id};{expence.expence};{expence.amount};{expence.description};{expence.username}'
 
                 file.write(line+'\n')
 
