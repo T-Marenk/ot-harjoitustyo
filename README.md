@@ -14,24 +14,28 @@ Sovellusksen tarkoitus on auttaa käyttäjiä seuraamaan rahankäyttöään ja a
 
 [arkkitehtuuri.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
 
+## Releases
+
+[Release 1](https://github.com/T-Marenk/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Nykyinen tilanne
 
-Sovellusta pystyy käyttämään graafisessa käyttöliitymässä, jossa pystyy näkemään menot ja tulot sekä lisäämään niitä
+Sovellusta pystyy käyttämään graafisessa käyttöliitymässä, jossa pystyy näkemään menot ja tulot sekä lisäämään niitä käyttäjä kohtaisesti. Käyttäjä on 
 
 Toiminnassa olevat ominaisuudet
 
 - Menojen lisääminen sovellukseen
 - Tulojen lisääminen sovellukseen
-- Menot ja tulot tallennetaan tiedostoon, josta ne voi lukea seuraavalla suorituskerralla myös
+- Menot ja tulot tallennetaan tiedostoon, josta ne voi lukea myös seuraavalla suorituskerralla
 - Menot ja tulot nähtävissä sovelluksessa
-
-Aloitetut toiminnot, mutta hyvin keskeneräiset
-
-- Käyttäjät
+- Yksittäisten menojen ja tulojen poistaminen
 
 Puuttuvat toiminnot
 
-- Menojen ja tulojen poisto
+- Näe vain menot tai tulot
+- Näe tietyllä aikavälillä lisätyt menot/tulot
+  - Menojen ja tulojen lisäys ajat
+- Kuukausittaisen budjetin asettaminen
 
 ## Asennus
 
