@@ -32,6 +32,7 @@ class BudgetService:
             description,
             amount,
             username,
+            date,
             expence
     ):
         """Lisää menon budjettiin.
@@ -39,11 +40,15 @@ class BudgetService:
         Args:
             amount: Menon suuruus
             description: Kuvaus menosta tai tulosta
+            username: Käyttäjä, jolle meno/tulo lisätään
+            date: menon/tulon päivämäärä
+            expence: totuusarvo, joka kertoo, onko kyseessä meno vai tulo
         """
 
         if expence:
             amount *= -1
-        expence = Expence(expence, amount, description, username)
+
+        expence = Expence(expence, amount, description, username, date)
 
         self._budget_repository.add_expence(expence)
 
@@ -88,8 +93,14 @@ class BudgetService:
             username: uuden käyttäjän käyttäjänimi
             password: uuden käyttäjän salasana
         """
+        user = self._user_repository.find_user(username)
+        
+        if user:
+            return False
 
         self._user_repository.create_user(username, password)
+        
+        return True
 
     def find_all(
             self

@@ -11,6 +11,7 @@ class Expence:
             amount,
             description,
             username,
+            date,
             expence_id=None
     ):
         """Luokan konstrukti, joka luo menon tai tulon
@@ -28,3 +29,4 @@ class Expence:
         self.description = description
         self.expence_id = expence_id or str(uuid.uuid4())
         self.username = username
+        self.date = date
