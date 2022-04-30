@@ -4,6 +4,8 @@ from repositories.budget_repository import budget_repository as default_budget_r
 
 from repositories.user_repository import user_repository as default_user_repository
 
+from time import localtime, strftime
+
 
 class BudgetService:
     def __init__(
@@ -111,7 +113,44 @@ class BudgetService:
         expences = self._budget_repository.find_all()
 
         return expences
+    
+    def find_by_username(
+            self,
+            username
+    ):
+        """Hakee tietyn käyttäjän menot ja tulot
+        
+        Args:
+            username: halutun käyttäjän menot ja tulot
+        Returns:
+            Käyttäjän kaikki menot ja tulot
+        """
 
+        return self._budget_repository.find_by_username(username)
+    
+    def this_month_budget(
+            self,
+            username
+    ):
+        """Hakee meneillään olevan kuukauden menot ja tulot
+
+        Args:
+            username: Käyttäjä, jonka menot ja tulot halutaan
+        Returns:
+            Kuun menot ja tulot käyttäjälle
+        """
+       
+        current_month = strftime("%m", localtime())
+
+        all_expences = self._budget_repository.find_by_username(username)
+        expences = []
+
+        for expence in all_expences:
+            if expence.date[3:5] == current_month:
+                expences.append(expence)
+
+        return expences
+        
     def delete_expence(
             self,
             expence_id

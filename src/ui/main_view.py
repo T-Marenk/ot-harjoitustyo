@@ -83,8 +83,7 @@ class ListBudget:
         total = 0
 
         for expence in self._budget:
-            if expence.username == self._user.username:
-                total += float(expence.amount)
+            total += float(expence.amount)
 
         self._initialize_total(
             total
@@ -93,8 +92,7 @@ class ListBudget:
         self._initialize_label()
 
         for expence in self._budget:
-            if expence.username == self._user.username:
-                self._initialize_expence(expence)
+            self._initialize_expence(expence)
 
 
 class MainView:
@@ -134,12 +132,15 @@ class MainView:
         self._handle_button('login')
 
     def _initialize_budget(
-            self
+            self,
+            this_month=None
     ):
         if self._list_budget_view:
             self._list_budget_view.destroy()
-
-        budget = budget_service.find_all()
+        if this_month:
+            budget = budget_service.this_month_budget(self._user.username)
+        else:
+            budget = budget_service.find_by_username(self._user.username)
 
         self._list_budget_view = ListBudget(
             self._list_budget_frame,
@@ -171,6 +172,18 @@ class MainView:
             master=self._frame,
             text="Kirjaudu ulos",
             command=lambda: self._logout()
+        )
+        
+        show_all_button = ttk.Button(
+                master=self._frame,
+                text="Näytä kaikki tapahtumat",
+                command=lambda: self._initialize_budget()
+        )
+        
+        this_month_button = ttk.Button(
+                master=self._frame,
+                text="Näytä tämän kuun tapahtumat",
+                command=lambda: self._initialize_budget(True)
         )
 
         self._initialize_budget()
@@ -225,9 +238,12 @@ class MainView:
             padx=5,
             pady=5
         )
+        
+        show_all_button.grid(row=4, column=0, sticky=constants.EW, padx=5, pady=5)
+        this_month_button.grid(row=4, column=1, sticky=constants.EW, padx=5, pady=5)
 
         self._list_budget_frame.grid(
-            row=4,
+            row=5,
             column=0,
             columnspan=2,
             sticky=constants.EW,

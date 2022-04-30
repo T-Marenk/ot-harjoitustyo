@@ -1,6 +1,7 @@
 from pathlib import Path
 from config import BUDGET_FILE_PATH
 from entities.expence import Expence
+from datetime import datetime
 
 
 class BudgetRepository:
@@ -42,6 +43,7 @@ class BudgetRepository:
         expences = self.find_all()
 
         expences.append(expence)
+        expences.sort(key=self._by_date, reverse=True)
         self._write(expences)
 
         return expences
@@ -76,6 +78,20 @@ class BudgetRepository:
         """
 
         return self._read()
+    
+    def find_by_username(
+            self,
+            username
+    ):
+        """Hakee tiedostosta tietyn käyttäjän menot ja tulot
+        
+        Args:
+            username: käyttäjä, jonka menot ja tulot halutaan
+        Returns:
+            Käyttäjän menot ja tulot
+        """
+
+        return self._read(username)
 
     def delete_all(
             self
@@ -84,9 +100,13 @@ class BudgetRepository:
         """
 
         self._write([])
+    
+    def _by_date(self, expence):
+        return datetime.strptime(expence.date, "%d-%m-%Y")
 
     def _read(
-            self
+            self,
+            user=None
     ):
         """Tiedostosta lukeva osa
 
@@ -109,7 +129,10 @@ class BudgetRepository:
                 expence_description = parts[3]
                 username = parts[4]
                 date = parts[5]
-
+                
+                if user:
+                    if username != user:
+                        continue
                 expences.append(
                     Expence(expence, expence_amount,
                             expence_description, username, date, expence_id)
