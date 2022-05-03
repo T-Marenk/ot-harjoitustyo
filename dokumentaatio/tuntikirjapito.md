@@ -13,4 +13,7 @@
 |26.4.2022|4 tuntia| Käyttäjä kohtaiseten menojen/tulojen tekeminen sekä yksittäisten menojen/tulojen poistaminen, uloskirjautuminen |
 |         |2 tuntia| Testien luonti ja koodin laadun parantaminen
 |         |1 tunti | Dokumentaation kirjoittaminen |
-|Yhteensä|29 tuntia|              |
+|29.4.2022|3 tuntia| Tapahtumille lisätty päivämäärät |
+|30.4.2022|2 tuntia| Näytä meneillään olevan kuukauden tapahtumat ja käyttöliittymän parantaminen |
+|3.5.2022| 5 tuntia| Testien lisääminen ja korjaaminen, dokumentaation kirjoittaminen: Arkkitehtuuri ja käyttöohje |
+|Yhteensä|40 tuntia|              |
