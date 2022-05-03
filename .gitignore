@@ -6,3 +6,5 @@ htmlcov
 
 data/database.sqlite
 data/expences.csv
+data/test-database.sqlite
+data/test-expences.csv

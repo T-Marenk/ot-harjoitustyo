@@ -69,6 +69,7 @@ class BudgetService:
         """
 
         user = self._user_repository.find_user(username)
+
         if not user:
             return True
         if user.password == password:
@@ -94,7 +95,10 @@ class BudgetService:
         Args:
             username: uuden käyttäjän käyttäjänimi
             password: uuden käyttäjän salasana
+        Returns:
+            Totuusarvon, onnistuiko käyttäjän luonti
         """
+
         user = self._user_repository.find_user(username)
         
         if user:
@@ -170,15 +174,28 @@ class BudgetService:
         """
 
         self._budget_repository.delete_all()
-
-    def find_expence(
-            self
+    
+    def find_user(
+            self,
+            username
     ):
-        pass
+        """Hakee tietokannasta tietyn käyttäjän
 
-    def find_income(
-            self
-    ):
-        pass
+        Args:
+            username: halutun käyttäjän käyttäjänimi
+        Returns:
+            Halutun käyttäjän
+        """
+
+        return self._user_repository.find_user(username)
+
+    def find_all_users(self):
+        """Hakee tietokannasta kaikki käyttäjät
+
+        Returns:
+            Kaikki käyttäjät
+        """
+            
+        return self._user_repository.find_all()
 
 budget_service = BudgetService()

@@ -63,6 +63,20 @@ class UserRepository:
 
         self._connection.commit()
 
+    def find_all(self):
+        """Hakee tietokannasta kaikki käyttäjät
+        """
+
+        cursor = self._connection.cursor()
+
+        cursor.execute(
+                'SELECT * FROM users'
+        )
+
+        rows = cursor.fetchall()
+
+        return [get_user(row) for row in rows]
+
     def delete_all(
         self,
     ):

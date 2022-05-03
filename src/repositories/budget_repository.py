@@ -36,8 +36,6 @@ class BudgetRepository:
 
         Args:
             expence: menoa tai tuloa kuvaava olio
-        Returns:
-            menot ja tulot
         """
 
         expences = self.find_all()
@@ -45,8 +43,6 @@ class BudgetRepository:
         expences.append(expence)
         expences.sort(key=self._by_date, reverse=True)
         self._write(expences)
-
-        return expences
 
     def delete_expence(
             self,
