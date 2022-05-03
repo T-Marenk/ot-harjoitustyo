@@ -13,10 +13,10 @@ Sovelluksessa voi olla monta käyttäjää, joille tallennetaan eri tiedot
 - Käyttäjä pystyy lisäämään tulojaan :heavy_check_mark:
 - Käyttäjä pystyy lisäämään menojaan :heavy_check_mark:
 	- Lisätyt menot ja tulot näkyvät vain kyseisellä käyttäjällä :heavy_check_mark:
-- Käyttäjä pystyy katsomaan menoja tietyllä aikavälillä, esimerkiksi yhden viikon menot
+- Käyttäjä pystyy katsomaan menoja tietyllä aikavälillä, esimerkiksi yhden viikon menot :heavy_check_mark:
 - Tarkastella menoja ja tulojaan erikseen 
 - Poistaa lisätyn menon tai tulon sovelluksesta :heavy_check_mark:
-- Käyttäjä voi asettaa kuukausittaisen budjetin itselleen
+- Käyttäjä voi asettaa kuukausittaisen budjetin itselleen 
 
 
 ## Jatkokehitys ideoita
