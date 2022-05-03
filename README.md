@@ -14,6 +14,8 @@ Sovellusksen tarkoitus on auttaa käyttäjiä seuraamaan rahankäyttöään ja a
 
 [arkkitehtuuri.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
 
+[kayttoohje.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/kayttoohje.md)
+
 ## Releases
 
 [Release 1](https://github.com/T-Marenk/ot-harjoitustyo/releases/tag/viikko5)
@@ -29,12 +31,13 @@ Toiminnassa olevat ominaisuudet
 - Menot ja tulot tallennetaan tiedostoon, josta ne voi lukea myös seuraavalla suorituskerralla
 - Menot ja tulot nähtävissä sovelluksessa
 - Yksittäisten menojen ja tulojen poistaminen
+- Tapahtumilla on päivämäärät
+  - Näe kaikki tapahtumat
+  - Näe vain meneillään olevan kuukauden tapahtumat 
 
 Puuttuvat toiminnot
 
 - Näe vain menot tai tulot
-- Näe tietyllä aikavälillä lisätyt menot/tulot
-  - Menojen ja tulojen lisäys ajat
 - Kuukausittaisen budjetin asettaminen
 
 ## Asennus
