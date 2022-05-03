@@ -19,6 +19,7 @@ Sovellusksen tarkoitus on auttaa käyttäjiä seuraamaan rahankäyttöään ja a
 ## Releases
 
 [Release 1](https://github.com/T-Marenk/ot-harjoitustyo/releases/tag/viikko5)
+
 [Release 2](https://github.com/T-Marenk/ot-harjoitustyo/releases/tag/viikko6)
 
 ## Nykyinen tilanne
