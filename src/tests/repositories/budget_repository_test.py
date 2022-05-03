@@ -30,7 +30,7 @@ class TestBudgetRepository(unittest.TestCase):
         expences = budget_repository.find_all()
 
         self.assertEqual(expences[0].description, 'Cola')
-    
+
     def test_add_expence_date_correct(self):
         budget_repository.add_expence(self.expence1)
 

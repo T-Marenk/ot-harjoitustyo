@@ -1,11 +1,10 @@
+from time import localtime, strftime
+
 from entities.expence import Expence
 
 from repositories.budget_repository import budget_repository as default_budget_repository
 
 from repositories.user_repository import user_repository as default_user_repository
-
-from time import localtime, strftime
-
 
 class BudgetService:
     def __init__(
@@ -100,12 +99,12 @@ class BudgetService:
         """
 
         user = self._user_repository.find_user(username)
-        
+
         if user:
             return False
 
         self._user_repository.create_user(username, password)
-        
+
         return True
 
     def find_all(
@@ -117,13 +116,13 @@ class BudgetService:
         expences = self._budget_repository.find_all()
 
         return expences
-    
+
     def find_by_username(
             self,
             username
     ):
         """Hakee tietyn käyttäjän menot ja tulot
-        
+
         Args:
             username: halutun käyttäjän menot ja tulot
         Returns:
@@ -131,7 +130,7 @@ class BudgetService:
         """
 
         return self._budget_repository.find_by_username(username)
-    
+
     def this_month_budget(
             self,
             username
@@ -143,7 +142,7 @@ class BudgetService:
         Returns:
             Kuun menot ja tulot käyttäjälle
         """
-       
+
         current_month = strftime("%m", localtime())
 
         all_expences = self._budget_repository.find_by_username(username)
@@ -154,7 +153,7 @@ class BudgetService:
                 expences.append(expence)
 
         return expences
-        
+
     def delete_expence(
             self,
             expence_id
@@ -174,7 +173,7 @@ class BudgetService:
         """
 
         self._budget_repository.delete_all()
-    
+
     def find_user(
             self,
             username
@@ -195,7 +194,8 @@ class BudgetService:
         Returns:
             Kaikki käyttäjät
         """
-            
+
         return self._user_repository.find_all()
+
 
 budget_service = BudgetService()

@@ -1,7 +1,7 @@
 from pathlib import Path
+from datetime import datetime
 from config import BUDGET_FILE_PATH
 from entities.expence import Expence
-from datetime import datetime
 
 
 class BudgetRepository:
@@ -74,13 +74,13 @@ class BudgetRepository:
         """
 
         return self._read()
-    
+
     def find_by_username(
             self,
             username
     ):
         """Hakee tiedostosta tietyn käyttäjän menot ja tulot
-        
+
         Args:
             username: käyttäjä, jonka menot ja tulot halutaan
         Returns:
@@ -96,7 +96,7 @@ class BudgetRepository:
         """
 
         self._write([])
-    
+
     def _by_date(self, expence):
         return datetime.strptime(expence.date, "%d-%m-%Y")
 
@@ -125,7 +125,7 @@ class BudgetRepository:
                 expence_description = parts[3]
                 username = parts[4]
                 date = parts[5]
-                
+
                 if user:
                     if username != user:
                         continue

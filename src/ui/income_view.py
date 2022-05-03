@@ -33,12 +33,14 @@ class AddIncomeView:
 
         label_amount = ttk.Label(master=self._frame, text="Määrä euroina:")
         self._income_amount = ttk.Entry(master=self._frame)
-        
+
         when = ttk.Label(master=self._frame, text="Valitse tulon päivämäärä")
         self._cal = DateEntry(master=self._frame, selectmode='day')
 
-        add_income = ttk.Button(master=self._frame, text="Lisää tulo", command=self._add_income)
-        cancel = ttk.Button(master=self._frame, text="Peruuta", command=self._cancel)
+        add_income = ttk.Button(
+            master=self._frame, text="Lisää tulo", command=self._add_income)
+        cancel = ttk.Button(master=self._frame,
+                            text="Peruuta", command=self._cancel)
         label.grid(row=0, column=0, padx=5, pady=5)
         self._income_name.grid(row=0, column=1, sticky=(
             constants.W, constants.E), padx=5, pady=5)
@@ -48,8 +50,10 @@ class AddIncomeView:
         when.grid(row=2, column=0)
         self._cal.grid(row=2, column=1, padx=15)
 
-        add_income.grid(row=3, column=0, columnspan=2, sticky=constants.EW, padx=5, pady=5)
-        cancel.grid(row=4, column=0, columnspan=2, sticky=constants.EW, padx=5, pady=5)
+        add_income.grid(row=3, column=0, columnspan=2,
+                        sticky=constants.EW, padx=5, pady=5)
+        cancel.grid(row=4, column=0, columnspan=2,
+                    sticky=constants.EW, padx=5, pady=5)
 
         self._frame.grid_columnconfigure(1, weight=1, minsize=500)
 
@@ -57,7 +61,8 @@ class AddIncomeView:
         amount = float(self._income_amount.get())
         name = self._income_name.get()
         date = self._cal.get_date().strftime("%d-%m-%Y")
-        budget_service.add_expence(name, amount, self._user.username, date, False)
+        budget_service.add_expence(
+            name, amount, self._user.username, date, False)
 
         self._handle_button('main_view')
 

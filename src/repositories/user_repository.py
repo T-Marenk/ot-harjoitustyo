@@ -70,7 +70,7 @@ class UserRepository:
         cursor = self._connection.cursor()
 
         cursor.execute(
-                'SELECT * FROM users'
+            'SELECT * FROM users'
         )
 
         rows = cursor.fetchall()

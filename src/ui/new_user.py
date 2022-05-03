@@ -42,7 +42,7 @@ class RegisterView:
                             text="Luo käyttäjä", command=self._create)
         back_button = ttk.Button(
             master=self._frame, text="Takaisin", command=lambda: self._switch())
-        
+
         error = ttk.Label(master=self._frame, text="Käyttäjä on jo olemassa")
 
         username_label.grid(row=0, column=0)
@@ -61,7 +61,7 @@ class RegisterView:
         password = self._password.get()
 
         success = budget_service.create_user(username, password)
-        
+
         if success:
             self._switch()
         else:

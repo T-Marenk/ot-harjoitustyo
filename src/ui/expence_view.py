@@ -3,7 +3,6 @@ from tkcalendar import DateEntry
 from services.budget_service import budget_service
 
 
-
 class AddExpenceView:
     def __init__(
             self,
@@ -44,12 +43,15 @@ class AddExpenceView:
                             text="Peruuta", command=self._cancel)
 
         label.grid(row=0, column=0, padx=5, pady=5)
-        self._expence_name.grid(row=0, column=1, sticky=constants.EW, padx=5, pady=5)
+        self._expence_name.grid(
+            row=0, column=1, sticky=constants.EW, padx=5, pady=5)
         label_amount.grid(row=1, column=0, padx=5, pady=5)
-        self._expence_amount.grid(row=1, column=1, sticky=constants.EW, padx=5, pady=5)
+        self._expence_amount.grid(
+            row=1, column=1, sticky=constants.EW, padx=5, pady=5)
         when.grid(row=2, column=0)
         self._cal.grid(row=2, column=1, padx=15)
-        add_expence.grid(row=3, columnspan=2, sticky=constants.EW, padx=5, pady=5)
+        add_expence.grid(row=3, columnspan=2,
+                         sticky=constants.EW, padx=5, pady=5)
         cancel.grid(row=4, columnspan=2, sticky=constants.EW, padx=5, pady=5)
 
         self._frame.grid_columnconfigure(1, weight=1, minsize=500)
@@ -58,7 +60,8 @@ class AddExpenceView:
         amount = float(self._expence_amount.get())
         name = self._expence_name.get()
         date = self._cal.get_date().strftime("%d-%m-%Y")
-        budget_service.add_expence(name, amount, self._user.username, date, True)
+        budget_service.add_expence(
+            name, amount, self._user.username, date, True)
 
         self._handle_button('main_view')
 

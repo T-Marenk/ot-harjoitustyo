@@ -50,11 +50,15 @@ class LoginView:
                 master=self._frame, text="Kirjautuminen epäonnistui")
 
         username_label.grid(row=0, column=0, padx=5, pady=5)
-        self._username.grid(row=0, column=1, sticky=constants.EW, padx=5, pady=5)
+        self._username.grid(
+            row=0, column=1, sticky=constants.EW, padx=5, pady=5)
         password_label.grid(row=1, column=0, padx=5, pady=5)
-        self._password.grid(row=1, column=1, sticky=constants.EW, padx=5, pady=5)
-        login_button.grid(row=2, columnspan=2, sticky=constants.EW, padx=5, pady=5)
-        new_button.grid(row=3, columnspan=2, sticky=constants.EW, padx=5, pady=5)
+        self._password.grid(
+            row=1, column=1, sticky=constants.EW, padx=5, pady=5)
+        login_button.grid(row=2, columnspan=2,
+                          sticky=constants.EW, padx=5, pady=5)
+        new_button.grid(row=3, columnspan=2,
+                        sticky=constants.EW, padx=5, pady=5)
         if self._login_fail:
             fail_label.grid(row=4, column=0, padx=5, pady=5)
 
