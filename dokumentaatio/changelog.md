@@ -24,3 +24,15 @@
 - Käyttäjän luominen mahdollista
 - Käyttäjä kohtaiset menot ja tulot
 - Testien määrää lisätty
+
+## Viikko 6
+
+- Tapahtumille lisätty päivämäärä
+  - Tapahtumaa lisätessä pystyy valitsemaan päivämäärän
+- Mahdollista nähdä tapahtumat meneillään olevalta kuukaudelta tai kaikki tapahtumat
+- Testejä lisätty
+  - `UserRepository` luokan testaaminen aloitettu
+  - Vanhojen testien korjaaminen toimimaan nykyisellä tilanteella
+  - Päivämäärien toimivuus testeissä
+- Käyttöliittymän parantaminen
+  - Paremmin asetellut painikkeet ja parempi käyttökokemus 
