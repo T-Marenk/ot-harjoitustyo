@@ -6,6 +6,7 @@ from repositories.budget_repository import budget_repository as default_budget_r
 
 from repositories.user_repository import user_repository as default_user_repository
 
+
 class BudgetService:
     def __init__(
             self,

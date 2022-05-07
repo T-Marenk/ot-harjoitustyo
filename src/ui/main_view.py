@@ -8,13 +8,16 @@ class ListBudget:
             root,
             budget,
             user,
-            delete_expence
+            delete_expence,
+            number
     ):
         self._root = root
         self._budget = budget
         self._frame = None
         self._delete_expence = delete_expence
         self._user = user
+        self._scrollbar = None
+        self._expence_start = number
 
         self._initialize()
 
@@ -32,15 +35,16 @@ class ListBudget:
             self,
             total
     ):
-        label_frame = ttk.Frame(master=self._frame)
+        total_frame = ttk.Frame(master=self._frame)
+
         label = ttk.Label(
-            master=label_frame,
+            master=total_frame,
             text=f'Tämän hetkinen budjetti: {total:.2f} €'
         )
 
         label.grid(row=0, column=0, padx=5, pady=5)
 
-        label_frame.pack(fill=constants.X)
+        total_frame.pack(fill=constants.X)
 
     def _initialize_label(self):
         label_frame = ttk.Frame(master=self._frame)
@@ -49,11 +53,13 @@ class ListBudget:
         name_label = ttk.Label(master=label_frame, text="Nimi")
         amount_label = ttk.Label(master=label_frame, text="Määrä")
 
-        date_label.grid(row=1, column=0, sticky=constants.W, padx=5, pady=5)
-        name_label.grid(row=1, column=1, sticky=constants.W, padx=5, pady=5)
-        amount_label.grid(row=1, column=2, sticky=constants.W, padx=5, pady=5)
+        date_label.grid(row=1, column=0, sticky=constants.EW, padx=5, pady=5)
+        name_label.grid(row=1, column=1, sticky=constants.EW, padx=5, pady=5)
+        amount_label.grid(row=1, column=2, sticky=constants.EW, padx=5, pady=5)
 
-        label_frame.columnconfigure(1, minsize=125)
+        label_frame.grid_columnconfigure(0, minsize=100)
+        label_frame.grid_columnconfigure(1, minsize=250)
+
         label_frame.pack(fill=constants.X)
 
     def _initialize_expence(
@@ -70,13 +76,16 @@ class ListBudget:
             command=lambda: self._delete_expence(expence.expence_id)
         )
 
-        date.grid(row=0, column=0, sticky=constants.W, padx=5, pady=5)
-        label.grid(row=0, column=1, sticky=constants.W, padx=5, pady=5)
-        amount.grid(row=0, column=2, sticky=constants.W, padx=5, pady=5)
+        date.grid(row=0, column=0, sticky=constants.EW, padx=5, pady=5)
+        label.grid(row=0, column=1, sticky=constants.EW, padx=5, pady=5)
+        amount.grid(row=0, column=2, sticky=constants.EW, padx=5, pady=5)
         delete_button.grid(
             row=0, column=3, sticky=constants.EW, padx=5, pady=5)
-        expence_frame.grid_columnconfigure(0, weight=1)
-        expence_frame.grid_columnconfigure(1, minsize=125)
+
+        expence_frame.grid_columnconfigure(0, minsize=100)
+        expence_frame.grid_columnconfigure(1, minsize=250)
+        expence_frame.grid_columnconfigure(2, minsize=100)
+
         expence_frame.pack(fill=constants.X)
 
     def _initialize(self):
@@ -92,7 +101,7 @@ class ListBudget:
 
         self._initialize_label()
 
-        for expence in self._budget:
+        for expence in self._budget[self._expence_start:self._expence_start+6]:
             self._initialize_expence(expence)
 
 
@@ -110,8 +119,12 @@ class MainView:
         self._frame = None
         self._list_budget_frame = None
         self._list_budget_view = None
+        self._scroll_frame = None
+        self._expence_number = 0
+        self._length = 0
         self._handle_button = handle_button
         self._user = budget_service.get_user()
+
         self._initialize()
 
     def pack(self):
@@ -125,6 +138,24 @@ class MainView:
             expence_id
     ):
         budget_service.delete_expence(expence_id)
+        self._initialize_budget()
+
+    def _increase_expences(
+            self,
+    ):
+        if self._length > self._expence_number + 10:
+            self._expence_number + 5
+        elif self._length > 5:
+            self._expence_number = self._length - 5
+        else:
+            self._expence_number = 0
+        self._initialize_budget()
+
+    def _decrease(self):
+        if self._expence_number - 5 > 0:
+            self._expence_number -= 5
+        else:
+            self._expence_number = 0
         self._initialize_budget()
 
     def _logout(self):
@@ -143,51 +174,33 @@ class MainView:
         else:
             budget = budget_service.find_by_username(self._user.username)
 
+        if len(budget) != self._length:
+            self._length = len(budget)
+            self._expence_number = 0
+
         self._list_budget_view = ListBudget(
             self._list_budget_frame,
             budget,
             self._user,
-            self._delete_expence
+            self._delete_expence,
+            self._expence_number
         )
 
         self._list_budget_view.pack()
 
-    def _initialize(self):
-        self._frame = ttk.Frame(master=self._root)
-        self._list_budget_frame = ttk.Frame(master=self._frame)
+        self._list_budget_frame.grid(
+            row=6,
+            column=0,
+            columnspan=2,
+            sticky=constants.EW,
+            padx=5,
+            pady=5
+        )
+
+    def _initialize_welcome_label(self):
         label = ttk.Label(
             master=self._frame, text=f"Hei { self._user.username }! Mitä haluat tehdä?"
         )
-        add_expence_label = ttk.Label(master=self._frame, text="Uusi meno:")
-        add_expence_button = ttk.Button(
-            master=self._frame, text="Lisää meno", command=lambda: self._handle_button('add_expence'))
-
-        add_income_label = ttk.Label(
-            master=self._frame,
-            text="Uusi tulo:"
-        )
-        add_income_button = ttk.Button(
-            master=self._frame, text="Lisää tulo", command=lambda: self._handle_button('add_income'))
-
-        logout_button = ttk.Button(
-            master=self._frame,
-            text="Kirjaudu ulos",
-            command=lambda: self._logout()
-        )
-
-        show_all_button = ttk.Button(
-            master=self._frame,
-            text="Näytä kaikki tapahtumat",
-            command=lambda: self._initialize_budget()
-        )
-
-        this_month_button = ttk.Button(
-            master=self._frame,
-            text="Näytä tämän kuun tapahtumat",
-            command=lambda: self._initialize_budget(True)
-        )
-
-        self._initialize_budget()
 
         label.grid(
             row=0,
@@ -198,38 +211,39 @@ class MainView:
             pady=5
         )
 
-        add_expence_label.grid(
-            row=1,
-            column=0,
-            sticky=constants.W,
-            padx=5,
-            pady=5
-        )
+    def _initialize_expence_button(self):
+        add_expence_button = ttk.Button(
+            master=self._frame,
+            text="Lisää meno",
+            command=lambda: self._handle_button('add_expence'))
 
         add_expence_button.grid(
             row=1,
-            column=1,
+            column=0,
             columnspan=2,
             sticky=constants.EW,
             padx=5,
             pady=5
         )
 
-        add_income_label.grid(
-            row=2,
-            column=0,
-            sticky=constants.W,
-            padx=5,
-            pady=5
-        )
+    def _initialize_income_button(self):
+        add_income_button = ttk.Button(
+            master=self._frame, text="Lisää tulo", command=lambda: self._handle_button('add_income'))
 
         add_income_button.grid(
             row=2,
-            column=1,
+            column=0,
             columnspan=2,
             sticky=constants.EW,
             padx=5,
             pady=5
+        )
+
+    def _initialize_logout_button(self):
+        logout_button = ttk.Button(
+            master=self._frame,
+            text="Kirjaudu ulos",
+            command=lambda: self._logout()
         )
 
         logout_button.grid(
@@ -240,18 +254,65 @@ class MainView:
             pady=5
         )
 
+    def _initialize_all_button(self):
+        show_all_button = ttk.Button(
+            master=self._frame,
+            text="Näytä kaikki tapahtumat",
+            command=lambda: self._initialize_budget()
+        )
+
         show_all_button.grid(
             row=4, column=0, sticky=constants.EW, padx=5, pady=5)
+
+    def _initialize_month_button(self):
+        this_month_button = ttk.Button(
+            master=self._frame,
+            text="Näytä tämän kuun tapahtumat",
+            command=lambda: self._initialize_budget(True)
+        )
+
         this_month_button.grid(
             row=4, column=1, sticky=constants.EW, padx=5, pady=5)
 
-        self._list_budget_frame.grid(
-            row=5,
-            column=0,
-            columnspan=2,
-            sticky=constants.EW,
-            padx=5,
-            pady=5
+    def _initialize_next_6_button(self):
+        next_button = ttk.Button(
+            master=self._frame,
+            text="Seuraavat 5 tapahtumaa",
+            command=self._increase_expences
         )
 
-        self._frame.grid_columnconfigure(2, weight=1, minsize=400)
+        next_button.grid(row=5, column=0, sticky=constants.EW, padx=5, pady=5)
+
+    def _initialize_last_6_button(self):
+        last_button = ttk.Button(
+            master=self._frame,
+            text="Viimeiset 5 tapahtumaa",
+            command=self._decrease
+        )
+
+        last_button.grid(row=5, column=1, sticky=constants.EW, padx=5, pady=5)
+
+    def _initialize(self):
+        self._frame = ttk.Frame(master=self._root)
+
+        self._list_budget_frame = ttk.Frame(master=self._frame)
+
+        self._initialize_welcome_label()
+
+        self._initialize_expence_button()
+
+        self._initialize_income_button()
+
+        self._initialize_logout_button()
+
+        self._initialize_all_button()
+
+        self._initialize_month_button()
+
+        self._initialize_next_6_button()
+
+        self._initialize_last_6_button()
+
+        self._initialize_budget()
+
+        self._frame.grid_columnconfigure(0, weight=1)

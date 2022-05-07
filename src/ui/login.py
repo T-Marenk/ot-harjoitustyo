@@ -62,6 +62,8 @@ class LoginView:
         if self._login_fail:
             fail_label.grid(row=4, column=0, padx=5, pady=5)
 
+        self._frame.grid_columnconfigure(1, weight=1, minsize=300)
+
     def _login(
             self
     ):
