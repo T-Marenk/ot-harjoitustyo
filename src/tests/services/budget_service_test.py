@@ -1,5 +1,5 @@
 import unittest
-from services.budget_service import BudgetService
+from services.budget_service import BudgetService, UsernameTakenError
 from entities.expence import Expence
 from entities.user import User
 
@@ -48,6 +48,8 @@ class TestBudgetService(unittest.TestCase):
             FakeBudgetRepository(),
             FakeUserRepository()
         )
+        
+        taken_error = UsernameTakenError()
 
     def test_find_all_finds_all(self):
         self.budget_service.add_expence(
@@ -69,7 +71,7 @@ class TestBudgetService(unittest.TestCase):
         self.assertEqual(expences[0].date, "25-04-2022")
 
     def test_create_user(self):
-        self.budget_service.create_user('Tyyppi', '1234')
+        self.budget_service.create_user('Tyyppi', '1234', '1234')
 
         user = self.budget_service.find_user('Tyyppi')
 
@@ -77,15 +79,11 @@ class TestBudgetService(unittest.TestCase):
         self.assertEqual(user.password, '1234')
 
     def test_create_user_no_same_user_added_twice(self):
-        self.budget_service.create_user('Tyyppi', '1234')
-        self.budget_service.create_user('Tyyppi', '1234')
-
-        users = self.budget_service.find_all_users()
-
-        self.assertEqual(len(users), 1)
+        self.budget_service.create_user('Tyyppi', '1234', '1234')
+        self.assertRaises(UsernameTakenError, self.budget_service.create_user, 'Tyyppi', '1234', '1234')
 
     def test_login(self):
-        self.budget_service.create_user('Tyyppi', '1234')
+        self.budget_service.create_user('Tyyppi', '1234', '1234')
         self.budget_service.login('Tyyppi', '1234')
 
         user = self.budget_service.get_user()
@@ -93,6 +91,7 @@ class TestBudgetService(unittest.TestCase):
         self.assertEqual(user.username, 'Tyyppi')
 
     def test_logout(self):
+        self.budget_service.create_user('Tyyppi', '1234', '1234')
         self.budget_service.login('Tyyppi', '1234')
         self.budget_service.logout()
 
