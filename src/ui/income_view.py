@@ -69,11 +69,11 @@ class AddIncomeView:
             row=1, column=1, sticky=constants.EW, padx=5, pady=5)
 
     def _initialize_calendar(self):
-        when = ttk.Label(master=self._frame, text="Valitse tulon päivämäärä")
+        when = ttk.Label(master=self._frame, text="Valitse tulon päivämäärä:")
         self._cal = DateEntry(master=self._frame, selectmode='day')
 
         when.grid(row=2, column=0)
-        self._cal.grid(row=2, column=1, sticky=constants.EW, padx=15)
+        self._cal.grid(row=2, column=1, sticky=constants.W, padx=15)
 
     def _initialize_buttons(self):
         add_income = ttk.Button(

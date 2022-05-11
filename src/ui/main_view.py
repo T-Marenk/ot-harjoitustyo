@@ -209,7 +209,7 @@ class MainView:
         self._list_budget_view.pack()
 
         self._list_budget_frame.grid(
-            row=7,
+            row=8,
             column=0,
             columnspan=2,
             sticky=constants.EW,
@@ -274,6 +274,14 @@ class MainView:
             padx=5,
             pady=5
         )
+    
+    def _initialize_show_graph(self):
+        show_graph_button = ttk.Button(
+            master=self._frame,
+            text="Näytä kuukauden menot diagrammina",
+            command=lambda: self._handle_button('show_graph'))
+
+        show_graph_button.grid(row=4, columnspan=2, sticky=constants.EW, padx=5, pady=5)
 
     def _initialize_logout_button(self):
         logout_button = ttk.Button(
@@ -283,7 +291,7 @@ class MainView:
         )
 
         logout_button.grid(
-            row=4,
+            row=5,
             columnspan=3,
             sticky=constants.EW,
             padx=5,
@@ -298,7 +306,7 @@ class MainView:
         )
 
         show_all_button.grid(
-            row=5, column=0, sticky=constants.EW, padx=5, pady=5)
+            row=6, column=0, sticky=constants.EW, padx=5, pady=5)
 
     def _initialize_month_button(self):
         this_month_button = ttk.Button(
@@ -308,7 +316,7 @@ class MainView:
         )
 
         this_month_button.grid(
-            row=5, column=1, sticky=constants.EW, padx=5, pady=5)
+            row=6, column=1, sticky=constants.EW, padx=5, pady=5)
 
     def _initialize_show_expences(self):
         expences_button = ttk.Button(
@@ -318,7 +326,7 @@ class MainView:
         )
 
         expences_button.grid(
-            row=6, column=0, sticky=constants.EW, padx=5, pady=5)
+            row=7, column=0, sticky=constants.EW, padx=5, pady=5)
 
     def _initialize_show_income(self):
         incomes_button = ttk.Button(
@@ -328,7 +336,7 @@ class MainView:
         )
 
         incomes_button.grid(
-            row=6, column=1, sticky=constants.EW, padx=5, pady=5)
+            row=7, column=1, sticky=constants.EW, padx=5, pady=5)
 
     def _initialize_next_6_button(self):
         next_button = ttk.Button(
@@ -337,7 +345,7 @@ class MainView:
             command=self._increase_expences
         )
 
-        next_button.grid(row=8, column=0, sticky=constants.EW, padx=5, pady=5)
+        next_button.grid(row=9, column=0, sticky=constants.EW, padx=5, pady=5)
 
     def _initialize_last_6_button(self):
         last_button = ttk.Button(
@@ -346,7 +354,7 @@ class MainView:
             command=self._decrease
         )
 
-        last_button.grid(row=8, column=1, sticky=constants.EW, padx=5, pady=5)
+        last_button.grid(row=9, column=1, sticky=constants.EW, padx=5, pady=5)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -360,6 +368,8 @@ class MainView:
         self._initialize_income_button()
 
         self._initialize_set_budget_button()
+        
+        self._initialize_show_graph()
 
         self._initialize_logout_button()
 
