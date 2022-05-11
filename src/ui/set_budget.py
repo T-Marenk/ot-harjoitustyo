@@ -1,5 +1,5 @@
-from tkinter import ttk, constants
-from services.budget_service import budget_service
+from tkinter import ttk, constants, StringVar
+from services.budget_service import budget_service, NotaNumberError
 
 
 class SetBudgetView:
@@ -11,6 +11,8 @@ class SetBudgetView:
         self._root = root
         self._switch = switch
         self._frame = None
+        self._error = None
+        self._error_label = None
 
         self._initialize()
 
@@ -19,6 +21,14 @@ class SetBudgetView:
 
     def destroy(self):
         self._frame.destroy()
+
+    def _initialize_error(self, error):
+        self._error.set(error)
+        self._error_label.grid(
+            row=4, column=0, sticky=constants.EW, padx=5, pady=5)
+
+    def _remove_error(self):
+        self._error_label.grid_remove()
 
     def _initialize_label(self):
         label = ttk.Label(
@@ -56,17 +66,24 @@ class SetBudgetView:
                     sticky=constants.EW, padx=5, pady=5)
 
     def _set_budget(self):
-        budget = float(self._insert_budget.get())
+        budget = self._insert_budget.get()
 
-        budget_service.set_month_budget(budget)
-
-        self._switch('main_view')
+        try:
+            budget_service.set_month_budget(budget)
+            self._switch('main_view')
+        except NotaNumberError:
+            self._initialize_error('Budjetin tulee olla positiivinen luku')
 
     def _cancel(self):
         self._switch('main_view')
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
+
+        self._error = StringVar(master=self._frame)
+
+        self._error_label = ttk.Label(
+            master=self._frame, textvariable=self._error, foreground="red")
 
         self._initialize_label()
 
@@ -77,3 +94,5 @@ class SetBudgetView:
         self._initialize_cancel()
 
         self._frame.grid_columnconfigure(0, weight=1)
+
+        self._remove_error()

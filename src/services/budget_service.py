@@ -7,6 +7,42 @@ from repositories.budget_repository import budget_repository as default_budget_r
 from repositories.user_repository import user_repository as default_user_repository
 
 
+class WrongUsernameError(Exception):
+    pass
+
+
+class WrongPasswordError(Exception):
+    pass
+
+
+class NotaNumberError(Exception):
+    pass
+
+
+class DescriptionTooLongError(Exception):
+    pass
+
+
+class PasswordsDontMatchError(Exception):
+    pass
+
+
+class UsernameTakenError(Exception):
+    pass
+
+
+class NoPasswordError(Exception):
+    pass
+
+
+class NoUsernameError(Exception):
+    pass
+
+
+class NoDescriptionError(Exception):
+    pass
+
+
 class BudgetService:
     def __init__(
             self,
@@ -45,7 +81,24 @@ class BudgetService:
             username: Käyttäjä, jolle meno/tulo lisätään
             date: menon/tulon päivämäärä
             expence: totuusarvo, joka kertoo, onko kyseessä meno vai tulo
+
+        Raises:
+            NotaNumber: Tuottaa virheen, jos annettu määrä ei ole positiivinen numero
+            DescriptionTooLong: Tuottaa virheen, jos tapahtuman kuvaus on yli 40 merkkiä pitkä
         """
+        try:
+            amount = float(amount)
+        except ValueError as error:
+            raise NotaNumberError() from error
+
+        if amount < 0:
+            raise NotaNumberError()
+
+        if description == "":
+            raise NoDescriptionError()
+
+        if len(description) > 40:
+            raise DescriptionTooLongError()
 
         if expence:
             amount *= -1
@@ -64,6 +117,9 @@ class BudgetService:
         Args:
             username: käyttäjän käyttäjänimi
             password: käyttäjän salasana
+
+        Raises:
+            WrongUsername: Käyttäjänimeä ei löytynyt tietokannasta
         Returns:
             totuusarvon, joka kertoo, onnistuiko sisään kirjautuminen
         """
@@ -71,11 +127,10 @@ class BudgetService:
         user = self._user_repository.find_user(username)
 
         if not user:
-            return True
-        if user.password == password:
-            self._user = user
-            return False
-        return True
+            raise WrongUsernameError()
+        if user.password != password:
+            raise WrongPasswordError()
+        self._user = user
 
     def logout(
             self
@@ -88,21 +143,34 @@ class BudgetService:
     def create_user(
             self,
             username,
-            password
+            password,
+            password2
     ):
         """Luo uuden käyttäjän sovellukseen
 
         Args:
             username: uuden käyttäjän käyttäjänimi
             password: uuden käyttäjän salasana
-        Returns:
-            Totuusarvon, onnistuiko käyttäjän luonti
+            password2: uuden käyttäjän salasana toiseen kertaan1
+
+        Raises:
+            UsernameTaken: Virhe, jos käyttäjänimi on jo olemassa
+            PasswordsDontMatch: Virhe, jos salasanat eivät ole samat
         """
 
         user = self._user_repository.find_user(username)
 
         if user:
-            return False
+            raise UsernameTakenError()
+
+        if username == "":
+            raise NoUsernameError()
+
+        if password != password2:
+            raise PasswordsDontMatchError()
+
+        if password == "":
+            raise NoPasswordError()
 
         self._user_repository.create_user(username, password)
 
@@ -237,6 +305,7 @@ class BudgetService:
                 left_budget += float(expence.amount)
 
             return budget, left_budget
+
         expences = self.this_month_budget(username)
         budget = 0
 
@@ -254,6 +323,14 @@ class BudgetService:
         Args:
             budget: haluttu budjetti
         """
+
+        try:
+            budget = float(budget)
+        except ValueError as error:
+            raise NotaNumberError from error
+
+        if budget < 0:
+            raise NotaNumberError()
 
         month = strftime("%m", localtime())
 
