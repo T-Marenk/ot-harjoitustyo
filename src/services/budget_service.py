@@ -164,13 +164,13 @@ class BudgetService:
         Returns:
             Halutut menot
         """
-        
+
         if month:
             current_month = strftime("%m", localtime())
 
         all_expences = self._budget_repository.find_by_username(username)
         expences = []
-        
+
         for expence in all_expences:
             if month:
                 if expence.expence == "True" and current_month == expence.date[3:5]:
@@ -178,9 +178,9 @@ class BudgetService:
             else:
                 if expence.expence == "True":
                     expences.append(expence)
-        
+
         return expences
-    
+
     def find_income(
             self,
             username,
@@ -200,7 +200,7 @@ class BudgetService:
 
         all_expences = self._budget_repository.find_by_username(username)
         expences = []
-        
+
         for expence in all_expences:
             if month:
                 if expence.expence == "False" and current_month == expence.date[3:5]:
@@ -208,8 +208,63 @@ class BudgetService:
             else:
                 if expence.expence == "False":
                     expences.append(expence)
-        
+
         return expences
+
+    def find_budget(
+            self
+    ):
+        """Hakee budjetin nykyisen tilanteen
+
+        Returns:
+            alkuperäisen budjetin ja jäljellä olevan budjetin, jos on asetettu budjetti
+            muuten palauttaa menojen ja tulojen summan
+        """
+
+        month = strftime("%m", localtime())
+
+        username = self._user.username
+
+        budget = self._user_repository.find_budget(username, month)
+
+        if budget:
+            budget = budget[0]
+            left_budget = budget
+
+            expences = self.find_expences(username, True)
+
+            for expence in expences:
+                left_budget += float(expence.amount)
+
+            return budget, left_budget
+        expences = self.this_month_budget(username)
+        budget = 0
+
+        for expence in expences:
+            budget += float(expence.amount)
+
+        return 0,  budget
+
+    def set_month_budget(
+            self,
+            budget
+    ):
+        """Asettaa käyttäjälle kuukauden budjetin
+
+        Args:
+            budget: haluttu budjetti
+        """
+
+        month = strftime("%m", localtime())
+
+        username = self._user.username
+
+        e_budget = self._user_repository.find_budget(username, month)
+
+        if e_budget:
+            self._user_repository.update_budget(username, budget, month)
+        else:
+            self._user_repository.set_budget(username, budget, month)
 
     def delete_expence(
             self,
@@ -253,7 +308,6 @@ class BudgetService:
         """
 
         return self._user_repository.find_all()
-
 
 
 budget_service = BudgetService()

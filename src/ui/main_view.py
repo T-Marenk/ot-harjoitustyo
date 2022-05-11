@@ -33,16 +33,23 @@ class ListBudget:
 
     def _initialize_total(
             self,
-            total
     ):
         total_frame = ttk.Frame(master=self._frame)
 
-        label = ttk.Label(
+        budget, left_budget = budget_service.find_budget()
+
+        start_budget = ttk.Label(
             master=total_frame,
-            text=f'Tämän hetkinen budjetti: {total:.2f} €'
+            text=f'Alkuperäinen budjetti: {budget:.2f} €'
         )
 
-        label.grid(row=0, column=0, padx=5, pady=5)
+        budget_now = ttk.Label(
+            master=total_frame,
+            text=f'Tämänhetkinen budjetti: {left_budget:.2f} €'
+        )
+
+        start_budget.grid(row=0, column=0, padx=5, pady=5)
+        budget_now.grid(row=0, column=1, padx=5, pady=5)
 
         total_frame.pack(fill=constants.X)
 
@@ -92,12 +99,7 @@ class ListBudget:
         self._frame = ttk.Frame(master=self._root)
         total = 0
 
-        for expence in self._budget:
-            total += float(expence.amount)
-
-        self._initialize_total(
-            total
-        )
+        self._initialize_total()
 
         self._initialize_label()
 
@@ -139,6 +141,7 @@ class MainView:
             expence_id
     ):
         budget_service.delete_expence(expence_id)
+        self._budget = None
         self._initialize_budget()
 
     def _increase_expences(
@@ -151,7 +154,7 @@ class MainView:
         else:
             self._expence_number = 0
         self._initialize_budget()
-   
+
     def _all_budget(self):
         self._month = False
         self._budget = budget_service.find_by_username(self._user.username)
@@ -172,13 +175,15 @@ class MainView:
     def _logout(self):
         budget_service.logout()
         self._handle_button('login')
-    
+
     def _show_expences(self):
-        self._budget = budget_service.find_expences(self._user.username, self._month)
+        self._budget = budget_service.find_expences(
+            self._user.username, self._month)
         self._initialize_budget()
-    
+
     def _show_income(self):
-        self._budget = budget_service.find_income(self._user.username, self._month)
+        self._budget = budget_service.find_income(
+            self._user.username, self._month)
         self._initialize_budget()
 
     def _initialize_budget(
@@ -204,7 +209,7 @@ class MainView:
         self._list_budget_view.pack()
 
         self._list_budget_frame.grid(
-            row=6,
+            row=7,
             column=0,
             columnspan=2,
             sticky=constants.EW,
@@ -254,6 +259,22 @@ class MainView:
             pady=5
         )
 
+    def _initialize_set_budget_button(self):
+        set_budget_button = ttk.Button(
+            master=self._frame,
+            text="Aseta budjetti kuukaudelle",
+            command=lambda: self._handle_button('set_budget')
+        )
+
+        set_budget_button.grid(
+            row=3,
+            column=0,
+            columnspan=2,
+            sticky=constants.EW,
+            padx=5,
+            pady=5
+        )
+
     def _initialize_logout_button(self):
         logout_button = ttk.Button(
             master=self._frame,
@@ -262,7 +283,7 @@ class MainView:
         )
 
         logout_button.grid(
-            row=3,
+            row=4,
             columnspan=3,
             sticky=constants.EW,
             padx=5,
@@ -277,7 +298,7 @@ class MainView:
         )
 
         show_all_button.grid(
-            row=4, column=0, sticky=constants.EW, padx=5, pady=5)
+            row=5, column=0, sticky=constants.EW, padx=5, pady=5)
 
     def _initialize_month_button(self):
         this_month_button = ttk.Button(
@@ -287,25 +308,27 @@ class MainView:
         )
 
         this_month_button.grid(
-            row=4, column=1, sticky=constants.EW, padx=5, pady=5)
-    
+            row=5, column=1, sticky=constants.EW, padx=5, pady=5)
+
     def _initialize_show_expences(self):
         expences_button = ttk.Button(
-                master=self._frame,
-                text="Näytä menot",
-                command=lambda: self._show_expences()
+            master=self._frame,
+            text="Näytä menot",
+            command=lambda: self._show_expences()
         )
 
-        expences_button.grid(row=5, column=0, sticky=constants.EW, padx=5, pady=5)
+        expences_button.grid(
+            row=6, column=0, sticky=constants.EW, padx=5, pady=5)
 
     def _initialize_show_income(self):
         incomes_button = ttk.Button(
-                master=self._frame,
-                text="Näytä tulot",
-                command=lambda: self._show_income()
+            master=self._frame,
+            text="Näytä tulot",
+            command=lambda: self._show_income()
         )
 
-        incomes_button.grid(row=5, column=1, sticky=constants.EW, padx=5, pady=5)
+        incomes_button.grid(
+            row=6, column=1, sticky=constants.EW, padx=5, pady=5)
 
     def _initialize_next_6_button(self):
         next_button = ttk.Button(
@@ -314,7 +337,7 @@ class MainView:
             command=self._increase_expences
         )
 
-        next_button.grid(row=7, column=0, sticky=constants.EW, padx=5, pady=5)
+        next_button.grid(row=8, column=0, sticky=constants.EW, padx=5, pady=5)
 
     def _initialize_last_6_button(self):
         last_button = ttk.Button(
@@ -323,7 +346,7 @@ class MainView:
             command=self._decrease
         )
 
-        last_button.grid(row=7, column=1, sticky=constants.EW, padx=5, pady=5)
+        last_button.grid(row=8, column=1, sticky=constants.EW, padx=5, pady=5)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -336,12 +359,14 @@ class MainView:
 
         self._initialize_income_button()
 
+        self._initialize_set_budget_button()
+
         self._initialize_logout_button()
 
         self._initialize_all_button()
 
         self._initialize_month_button()
-    
+
         self._initialize_show_expences()
 
         self._initialize_show_income()

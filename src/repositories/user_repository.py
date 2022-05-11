@@ -63,6 +63,77 @@ class UserRepository:
 
         self._connection.commit()
 
+    def find_budget(
+            self,
+            username,
+            month
+    ):
+        """Hakee tietokannasta käyttäjän kuukauden budjetin
+
+        Args:
+            username: Halutun käyttäjän käyttäjänimi
+            month: Halutun kuukauden budjetti
+        Returns:
+            Käyttäjän kuukauden budjetin
+        """
+
+        cursor = self._connection.cursor()
+
+        cursor.execute(
+            'SELECT budget FROM budget WHERE username=? AND month=?', (
+                username, month)
+        )
+
+        budget = cursor.fetchone()
+
+        return budget
+
+    def set_budget(
+            self,
+            username,
+            budget,
+            month
+    ):
+        """Asettaa käyttäjälle budjetin kuukaudelle
+
+        Args:
+            username: halutun käyttäjän käyttäjänimi
+            budget: bujetti kuukaudelle
+            month: kuukausi, jolle budjetti asetetaan
+        """
+
+        cursor = self._connection.cursor()
+
+        cursor.execute(
+            'INSERT INTO budget (username, budget, month) VALUES (?, ?, ?)',
+            (username, budget, month)
+        )
+
+        self._connection.commit()
+
+    def update_budget(
+            self,
+            username,
+            budget,
+            month
+    ):
+        """Päivittää tietokannassa käyttäjän budjetin
+
+        Args:
+            username: halutun käyttäjän käyttäjänimi
+            budget: budjetti kuukaudelle
+            month: kuukausi, jolle budjetti asetetaan
+        """
+
+        cursor = self._connection.cursor()
+
+        cursor.execute(
+            'UPDATE budget SET budget=? WHERE username=? AND month=?',
+            (budget, username, month)
+        )
+
+        self._connection.commit()
+
     def find_all(self):
         """Hakee tietokannasta kaikki käyttäjät
         """

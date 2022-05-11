@@ -21,6 +21,14 @@ def create_tables(connection):
         );
     ''')
 
+    cursor.execute('''
+        create table budget (
+            username TEXT REFERENCES users,
+            budget INTEGER,
+            month INTEGER
+        );
+    ''')
+
     connection.commit()
 
 

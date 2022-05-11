@@ -6,7 +6,7 @@ def main():
     window = Tk()
     window.title("Budget right")
 
-    window.geometry("640x520")
+    window.geometry("640x550")
 
     ui = UI(window)
     ui.start()
