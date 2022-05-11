@@ -155,6 +155,62 @@ class BudgetService:
 
         return expences
 
+    def find_expences(self, username, month=False):
+        """Hakee tietokannasta käyttäjän menot
+
+        Args:
+            username: Haluttu käyttäjä
+            month: Kertoo, haetaanko tämän kuukauden vai kaikki menot
+        Returns:
+            Halutut menot
+        """
+        
+        if month:
+            current_month = strftime("%m", localtime())
+
+        all_expences = self._budget_repository.find_by_username(username)
+        expences = []
+        
+        for expence in all_expences:
+            if month:
+                if expence.expence == "True" and current_month == expence.date[3:5]:
+                    expences.append(expence)
+            else:
+                if expence.expence == "True":
+                    expences.append(expence)
+        
+        return expences
+    
+    def find_income(
+            self,
+            username,
+            month=False
+    ):
+        """Hakee tietokannasta käyttäjän tulot
+
+        Args:
+            username: Haluttu käyttäjä
+            month: Totuusarvo, joka kertoo, haetaanko vain nykyisen kuukauden tulot
+        Returns:
+            Halutut tulot
+        """
+
+        if month:
+            current_month = strftime("%m", localtime())
+
+        all_expences = self._budget_repository.find_by_username(username)
+        expences = []
+        
+        for expence in all_expences:
+            if month:
+                if expence.expence == "False" and current_month == expence.date[3:5]:
+                    expences.append(expence)
+            else:
+                if expence.expence == "False":
+                    expences.append(expence)
+        
+        return expences
+
     def delete_expence(
             self,
             expence_id
@@ -197,6 +253,7 @@ class BudgetService:
         """
 
         return self._user_repository.find_all()
+
 
 
 budget_service = BudgetService()
