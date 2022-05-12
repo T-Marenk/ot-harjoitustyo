@@ -212,13 +212,13 @@ class BudgetService:
             Kuun menot ja tulot käyttäjälle
         """
 
-        current_month = strftime("%m", localtime())
+        current_month = strftime("%m-%Y", localtime())
 
         all_expences = self._budget_repository.find_by_username(username)
         expences = []
 
         for expence in all_expences:
-            if expence.date[3:5] == current_month:
+            if expence.date[3:10] == current_month:
                 expences.append(expence)
 
         return expences
@@ -234,14 +234,14 @@ class BudgetService:
         """
 
         if month:
-            current_month = strftime("%m", localtime())
+            current_month = strftime("%m-%Y", localtime())
 
         all_expences = self._budget_repository.find_by_username(username)
         expences = []
 
         for expence in all_expences:
             if month:
-                if expence.expence == "True" and current_month == expence.date[3:5]:
+                if expence.expence == "True" and current_month == expence.date[3:10]:
                     expences.append(expence)
             else:
                 if expence.expence == "True":
@@ -264,14 +264,14 @@ class BudgetService:
         """
 
         if month:
-            current_month = strftime("%m", localtime())
+            current_month = strftime("%m-%Y", localtime())
 
         all_expences = self._budget_repository.find_by_username(username)
         expences = []
 
         for expence in all_expences:
             if month:
-                if expence.expence == "False" and current_month == expence.date[3:5]:
+                if expence.expence == "False" and current_month == expence.date[3:10]:
                     expences.append(expence)
             else:
                 if expence.expence == "False":
@@ -376,15 +376,6 @@ class BudgetService:
         """
 
         return self._user_repository.find_user(username)
-
-    def find_all_users(self):
-        """Hakee tietokannasta kaikki käyttäjät
-
-        Returns:
-            Kaikki käyttäjät
-        """
-
-        return self._user_repository.find_all()
 
 
 budget_service = BudgetService()

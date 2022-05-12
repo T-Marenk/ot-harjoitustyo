@@ -7,6 +7,7 @@ from ui.new_user import RegisterView
 from ui.set_budget import SetBudgetView
 from ui.graph_spending_view import GraphView
 
+
 class UI:
     """Graafisesta käyttöliittymästä hoitava luokka
     """

@@ -274,14 +274,15 @@ class MainView:
             padx=5,
             pady=5
         )
-    
+
     def _initialize_show_graph(self):
         show_graph_button = ttk.Button(
             master=self._frame,
             text="Näytä kuukauden menot diagrammina",
             command=lambda: self._handle_button('show_graph'))
 
-        show_graph_button.grid(row=4, columnspan=2, sticky=constants.EW, padx=5, pady=5)
+        show_graph_button.grid(row=4, columnspan=2,
+                               sticky=constants.EW, padx=5, pady=5)
 
     def _initialize_logout_button(self):
         logout_button = ttk.Button(
@@ -368,7 +369,7 @@ class MainView:
         self._initialize_income_button()
 
         self._initialize_set_budget_button()
-        
+
         self._initialize_show_graph()
 
         self._initialize_logout_button()
