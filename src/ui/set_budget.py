@@ -3,6 +3,9 @@ from services.budget_service import budget_service, NotaNumberError
 
 
 class SetBudgetView:
+    """Kuukauden budjetin lisäämisnäkymästä vastaava luokka
+    """
+
     def __init__(
             self,
             root,

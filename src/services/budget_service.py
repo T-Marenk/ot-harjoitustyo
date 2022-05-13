@@ -53,6 +53,10 @@ class BudgetService:
             user_repository=default_user_repository
     ):
         """Luokan konstrukti
+
+        Args:
+            budget_repository: Tapahtumien pysyväistallentamisesta vastaava repositorio
+            user_repository: Käyttäjätietokannan yhteydestä vastaava repositorio
         """
 
         self._user = None
@@ -79,15 +83,15 @@ class BudgetService:
         """Lisää menon budjettiin.
 
         Args:
-            amount: Menon suuruus
             description: Kuvaus menosta tai tulosta
+            amount: Menon suuruus
             username: Käyttäjä, jolle meno/tulo lisätään
             date: menon/tulon päivämäärä
             expence: totuusarvo, joka kertoo, onko kyseessä meno vai tulo
 
         Raises:
-            NotaNumber: Tuottaa virheen, jos annettu määrä ei ole positiivinen numero
-            DescriptionTooLong: Tuottaa virheen, jos tapahtuman kuvaus on yli 40 merkkiä pitkä
+            NotaNumberError: Tuottaa virheen, jos annettu määrä ei ole positiivinen numero
+            DescriptionTooLongError: Tuottaa virheen, jos tapahtuman kuvaus on yli 40 merkkiä pitkä
         """
         try:
             amount = float(amount)
@@ -122,9 +126,8 @@ class BudgetService:
             password: käyttäjän salasana
 
         Raises:
-            WrongUsername: Käyttäjänimeä ei löytynyt tietokannasta
-        Returns:
-            totuusarvon, joka kertoo, onnistuiko sisään kirjautuminen
+            WrongUsernameError: Käyttäjänimeä ei löytynyt tietokannasta
+            WrongPasswordError: Käyttäjän salasana on väärä
         """
 
         user = self._user_repository.find_user(username)
@@ -157,8 +160,10 @@ class BudgetService:
             password2: uuden käyttäjän salasana toiseen kertaan1
 
         Raises:
-            UsernameTaken: Virhe, jos käyttäjänimi on jo olemassa
-            PasswordsDontMatch: Virhe, jos salasanat eivät ole samat
+            UsernameTakenError: Virhe, jos käyttäjänimi on jo olemassa
+            NoUsernameError: Käyttäjänimeä ei olla annettu
+            PasswordsDontMatchError: Virhe, jos salasanat eivät ole samat
+            NoPasswordError: Salasanaa ei olla annettu
         """
 
         user = self._user_repository.find_user(username)
@@ -181,6 +186,9 @@ class BudgetService:
             self
     ):
         """Hakee kaikki menot ja tulot
+
+        Returns:
+            Kaikki menot ja tulot
         """
 
         expences = self._budget_repository.find_all()
@@ -224,7 +232,11 @@ class BudgetService:
 
         return expences
 
-    def find_expences(self, username, month=False):
+    def find_expences(
+            self,
+            username,
+            month=False
+    ):
         """Hakee tietokannasta käyttäjän menot
 
         Args:
@@ -348,10 +360,10 @@ class BudgetService:
             self,
             expence_id
     ):
-        """Poistaa yhden menon/tulon
+        """Poistaa yhden tapahtuman sovelluksesta
 
         Args:
-            expence_id: Menon/tulon id
+            expence_id: Tapahtuman id
         """
 
         self._budget_repository.delete_expence(expence_id)

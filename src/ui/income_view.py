@@ -4,6 +4,9 @@ from services.budget_service import budget_service, NotaNumberError, Description
 
 
 class AddIncomeView:
+    """Uuden tulon lisäämis näkymästä vastaava luokka
+    """
+
     def __init__(
             self,
             root,

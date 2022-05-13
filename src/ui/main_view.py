@@ -3,6 +3,9 @@ from services.budget_service import budget_service
 
 
 class ListBudget:
+    """Päänäkymään tapahtumat alustava luokka
+    """
+
     def __init__(
             self,
             root,

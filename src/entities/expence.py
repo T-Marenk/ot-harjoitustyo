@@ -19,9 +19,10 @@ class Expence:
         Args:
             expence: totuusarvo, joka kertoo, onko kyseessä tulo vai meno
             amount: menon tai tulon määrä
-            expence_id: Menon tai tulon id:tä kuvaava osa. Luodaan automaattisesti uuid:llä
             description: Kuvaus tulosta tai menosta
             username: Osa, joka kertoo mille käyttäjälle kyseinen meno kuuluu
+            date: tapahtuman päivämäärä
+            expence_id: Menon tai tulon id:tä kuvaava osa. Luodaan automaattisesti uuid:llä
         """
 
         self.expence = expence

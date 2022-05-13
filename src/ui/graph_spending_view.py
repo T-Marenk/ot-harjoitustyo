@@ -8,6 +8,8 @@ from services.budget_service import budget_service
 
 
 class GraphView:
+    """Kuukauden tapahtumien kuvaavan diagramminäkymästa vastaava luokka
+    """
     def __init__(
             self,
             root,

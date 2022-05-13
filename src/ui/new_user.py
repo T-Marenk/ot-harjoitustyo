@@ -3,6 +3,9 @@ from services.budget_service import budget_service, UsernameTakenError, Password
 
 
 class RegisterView:
+    """Uuden käyttäjän lisäämisnäkymästä vastaava luokka
+    """
+
     def __init__(
             self,
             root,

@@ -32,10 +32,10 @@ class BudgetRepository:
             self,
             expence
     ):
-        """Lisää tiedostoon menon
+        """Lisää tiedostoon tapahtuman
 
         Args:
-            expence: menoa tai tuloa kuvaava olio
+            expence: tapahtumaa kuvaava olio
         """
 
         expences = self.find_all()
@@ -48,10 +48,10 @@ class BudgetRepository:
             self,
             e_id
     ):
-        """Poistaa menon/tulon tiedostosta
+        """Poistaa tapahtuman tiedostosta
 
         Args:
-            e_id: Menon/tulon id
+            e_id: Tapahtuman id
         """
 
         expences = self._read()

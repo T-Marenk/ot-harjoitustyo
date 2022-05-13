@@ -15,6 +15,9 @@ class UserRepository:
             connection
     ):
         """Luokan konstruktori
+
+        Args:
+            connection: yhteys SQLite-tietokantaan
         """
 
         self._connection = connection
@@ -136,6 +139,9 @@ class UserRepository:
 
     def find_all(self):
         """Hakee tietokannasta kaikki käyttäjät
+
+        Returns:
+            Kaikki tietokannasta löytyvät käyttäjät
         """
 
         cursor = self._connection.cursor()

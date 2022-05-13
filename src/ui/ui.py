@@ -9,7 +9,7 @@ from ui.graph_spending_view import GraphView
 
 
 class UI:
-    """Graafisesta käyttöliittymästä hoitava luokka
+    """Graafisesta käyttöliittymästä vastaava luokka
     """
 
     def __init__(
