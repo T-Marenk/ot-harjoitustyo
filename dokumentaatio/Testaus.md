@@ -12,13 +12,14 @@ tallentavat tiedot vain muistiin. Testejä varten on luotu luokat `FakeBudgetRep
 
 ### Repositoriot
 
-TODO
+Repositorio luokkia `BudgetRepository` ja `UserRepository` testataan luokilla ![TestBudgetRepository](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/src/tests/repositories/budget_repository_test.py) ja ![TestUserRepository](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/src/tests/repositories/user_repository_test.py). Testauksessa käytetään oikeita tiedostoja, jotta toimivuus saadaan testattua oikean mukaiseksi.
+Repositorioiden testauksessa käytettävät tiedostot eivät ole samat kuin sovelluksen muun käyttämät ja ne on määritelty juurihakemistossa löytyvässä _.env.test_ tiedostossa.
 
 ### Testauskattavuus
 
 Käyttöliittymä pois lukien sovelluksen testauskattavuus on 98%
 
-![](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/kuvat/coverage_report.png)
+![](./kuvat/coverage_report.png)
 
 Testaus ei suorita _build.py_ tai _initialize_databse.py_ komentoriviltä. Testaus ei testaa tilannetta, jossa yritetään hakea kirjautumattoman
 käyttäjän budjettia.
@@ -37,7 +38,7 @@ Sovelluksen testauksessa on testattu sekä tilannetta, jossa tiedostot ja tietok
 
 ## Sovellukseen jäääneet laatuongelmat
 
-Sovellus ei anna järkeviä virheilmoituksista:
+Sovelluksesta löytyy seuraavat ongelmat:
 
-- SQLite tietokantaa ei ole alustettu, eli sovellusta yritetään suorittaa ilman, että on suoritettu `poetry run invoke build` komentoa
+- SQLite tietokantaa ei ole alustettu, eli sovellusta yritetään suorittaa ilman, että on suoritettu `poetry run invoke build` komentoa, ei tuota järkevää virheilmoitusta järjestelmään
 - Jos tiedostojen nimiä muutta .env tiedostossa ja suorittaa uudestaan `poetry run invoke build`, vanhat tiedostot, joilla on eri nimi, eivät poistu data-kansiosta
