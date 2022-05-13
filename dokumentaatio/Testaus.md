@@ -28,7 +28,7 @@ käyttäjän budjettia.
 
 ### Asentaminen ja konfigurointi
 
-Sovellus on haettu ja sitä on testattu ![käyttöohjeen](./kayttoohje.md) kuvaamilla ohjeilla Linux-ympäristössä. Testauksessa on käytetty myös eri konfiguraatioita _.env_-tiedostossa
+Sovellus on kloonattu ja sitä on testattu ![käyttöohjetta](./kayttoohje.md) seuraamalla Linux-ympäristössä. Testauksessa on myös vaihdettu _.env_-tiedostossa määriteltävien tiedostojen nimet.
 
 Sovelluksen testauksessa on testattu sekä tilannetta, jossa tiedostot ja tietokannat ovat jo olemassa sekä tilanteissa, missä niitä ei ole vielä olemassa.
 
