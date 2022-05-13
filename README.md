@@ -16,7 +16,7 @@ Sovellusksen tarkoitus on auttaa käyttäjiä seuraamaan rahankäyttöään ja a
 
 [Käyttöohje](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/kayttoohje.md)
 
-[Testausdokumentto](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/Testaus.md)
+[Testausdokumentti](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/Testaus.md)
 
 ## Releases
 
