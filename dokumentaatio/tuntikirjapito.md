@@ -16,4 +16,8 @@
 |29.4.2022|3 tuntia| Tapahtumille lisätty päivämäärät |
 |30.4.2022|2 tuntia| Näytä meneillään olevan kuukauden tapahtumat ja käyttöliittymän parantaminen |
 |3.5.2022| 5 tuntia| Testien lisääminen ja korjaaminen, dokumentaation kirjoittaminen: Arkkitehtuuri ja käyttöohje |
-|Yhteensä|40 tuntia|              |
+|7.5.2022| 2 tuntia| Tapahtumien selaaminen lisääminen |
+|11.5.2022|10 tuntia| Näe vain menot tai tulot, aseta kuukaudelle budjetti, näytä järkevät virheilmoitukset sovelluksessa, kuukauden budjetista näkyvä diagrammi |
+|12.5.2022|3 tuntia| Testien lisääminen, vanhojen testien korjaus, virheellisten syötteiden testaus
+|13.5.2022|2 tuntia| Dokumentointi |
+|Yhteensä|57 tuntia|              |
