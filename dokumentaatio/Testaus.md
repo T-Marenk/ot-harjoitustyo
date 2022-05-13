@@ -25,8 +25,19 @@ käyttäjän budjettia.
 
 ## Järjestelmätestaus
 
-TODO
-
 ### Asentaminen ja konfigurointi
 
-TODO
+Sovellus on haettu ja sitä on testattu ![käyttöohjeen](./kayttoohje.md) kuvaamilla ohjeilla Linux-ympäristössä. Testauksessa on käytetty myös eri konfiguraatioita _.env_-tiedostossa
+
+Sovelluksen testauksessa on testattu sekä tilannetta, jossa tiedostot ja tietokannat ovat jo olemassa sekä tilanteissa, missä niitä ei ole vielä olemassa.
+
+### Toiminnallisuudet
+
+![Määrittelydokumentin](./vaatimuusmaarittely.md) määrittelemät toiminnallisuudet on testattu. Toiminnallisuuksia testatessa on testattu myös virheelliset syötteet, kuten kirjaimet numero syöttö kentissä sekä tyhjät kentät.
+
+## Sovellukseen jäääneet laatuongelmat
+
+Sovellus ei anna järkeviä virheilmoituksista:
+
+- SQLite tietokantaa ei ole alustettu, eli sovellusta yritetään suorittaa ilman, että on suoritettu `poetry run invoke build` komentoa
+- Jos tiedostojen nimiä muutta .env tiedostossa ja suorittaa uudestaan `poetry run invoke build`, vanhat tiedostot, joilla on eri nimi, eivät poistu data-kansiosta
