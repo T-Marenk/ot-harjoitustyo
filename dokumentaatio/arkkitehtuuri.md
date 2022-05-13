@@ -54,7 +54,7 @@ Menot ja tulot sekä käyttäjät tallennetaan erillisiin tiedostoihin. Tiedosto
 ```
 Tallenustapa on siis menon/tulon id, totuusarvo joka kertoo, onko kyseessä meno vai tulo, määrä, kuvaus, käyttäjätunnut ja päivämäärä. Osat erotetaan toisistaan puolipisteellä (;).
 
-`UserRepository`-luokka tallentaa käyttäjät SQLite-tietokannan tauluun `users`. Tietokanta alustetaan tiedostossa [initialize_database.py](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/src/initialize_database.py) sovellusta rakentaessa.
+`UserRepository`-luokka tallentaa käyttäjät SQLite-tietokannan tauluun `users` sekä käyttäjäkohtaiset budjetit tauluun `budget`. Tietokanta alustetaan tiedostossa [initialize_database.py](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/src/initialize_database.py) sovellusta rakentaessa.
 
 ## Päätoiminnallisuudet
 
@@ -64,20 +64,37 @@ Sovelluksen toiminnallisuuksia kuvattuna sekvenssikaavioilla
 
 Käyttäjä antaa käyttäjänimen ja salasanan syötekenttiin, jonka jälkeen hän painaa "Kirjaudu sisään" -nappia, josta seuraa seuraavat tapahtumat:
 
-![login_sekvenssi_kaavio](https://user-images.githubusercontent.com/95504014/166416534-ad98f790-c874-46b5-8915-7b0c62711023.png)
+![login](https://user-images.githubusercontent.com/95504014/168222331-5b05e03f-9e90-40f0-b467-b665edb5d020.png)
 
 ### Uuden käyttäjän luominen
 
 Kun käyttäjä on syöttänyt haluamansa käyttäjänimen ja salasanan käyttöliittymässä teksikenttiin, painamalla nappia "Luo käyttäjä" tapahtuu seuraavat toimenpiteet
 
-![new-user_sekvenssi_kaavio](https://user-images.githubusercontent.com/95504014/166416692-537e5d64-fbfe-45c6-9f7f-be443c30439f.png)
+![create_user](https://user-images.githubusercontent.com/95504014/168222303-04cd7e35-2612-4e0a-878b-63c8b69d0156.png)
 
 ### Uusi meno sekä tulo
 
 Käyttäjä antaa sovelluksessa tiedon menon tai tulon nimestä, menon/tulon määrän sekä valitsee päivämäärän, jolloin se on lisätty. Tämän jälkeen painamalla nappia "Lisää tulo" tai "Lisää meno", riippuen kumpaa lisätään, tapahtuu seuraavat tapahtumat:
 
 Menon lisäys:
+
 ![add_expence_sekvenssi_kaavio](https://user-images.githubusercontent.com/95504014/166416878-40037b3d-c638-4f07-9a49-c00afa8fe8b4.png)
 
 Tulon lisäsys:
-![add_income_sekvenssi_kaavio](https://user-images.githubusercontent.com/95504014/166416884-c7d05f98-d092-4c1a-a410-68f4f7205da5.png)
+
+![income](https://user-images.githubusercontent.com/95504014/168222261-dc521d9f-4a1b-44a2-972c-bdbba1b6079a.png)
+
+### Budjetin asettaminen
+
+Käyttäjällä on mahdollista asettaa kuukaudelle haluaman budjetin. Päänäkymästä painamalla _Aseta budjetti kuukaudelle_ -nappia, pääsee käyttäjä asettamaan kuukaudelle budjetin kirjoittamalla sen syötekenttään ja painamalla _Aseta budjetti_ tapahtuu tapahtumat seuraavasti:
+
+Jos nykyiselle käyttäjälle ei olla vielä asetettu kuukaudelle budjettia:
+
+![set_new_budget](https://user-images.githubusercontent.com/95504014/168222656-bc1e95b0-be50-471f-9fae-b701b1a360fe.png)
+
+Jos nykyisellä käyttäjällä on jo asetettuna budjetti kuukaudelle:
+
+![update_budget](https://user-images.githubusercontent.com/95504014/168222783-686a589d-149f-456a-9a25-dd1d61ab0eb7.png)
+
+
+
