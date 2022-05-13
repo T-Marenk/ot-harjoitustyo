@@ -6,15 +6,17 @@ Sovellusksen tarkoitus on auttaa käyttäjiä seuraamaan rahankäyttöään ja a
 
 ## Dokumentaatio
 
-[vaatimuusmaarittely.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/vaatimusmaarittely.md)
+[Vaatimuusmäärittely](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/vaatimusmaarittely.md)
 
-[tuntikirjanpito.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/tuntikirjapito.md)
+[Tuntikirjanpito](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/tuntikirjapito.md)
 
-[changelog.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/changelog.md)
+[Changelog](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/changelog.md)
 
-[arkkitehtuuri.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
+[Arkkitehtuuri](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
 
-[kayttoohje.md](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/kayttoohje.md)
+[Käyttöohje](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/kayttoohje.md)
+
+[Testausdokumentto](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/dokumentaatio/Testaus.md)
 
 ## Releases
 
