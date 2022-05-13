@@ -44,6 +44,9 @@ class NoDescriptionError(Exception):
 
 
 class BudgetService:
+    """Sovelluslogiikasta vastaava luokka
+    """
+
     def __init__(
             self,
             budget_repository=default_budget_repository,
@@ -57,7 +60,7 @@ class BudgetService:
         self._budget_repository = budget_repository
 
     def get_user(self):
-        """Nykyisen käyttäjän haku
+        """Hakee nykyisen käyttäjän
 
         Returns:
             nykyisen käyttäjän
@@ -173,8 +176,6 @@ class BudgetService:
             raise NoPasswordError()
 
         self._user_repository.create_user(username, password)
-
-        return True
 
     def find_all(
             self
