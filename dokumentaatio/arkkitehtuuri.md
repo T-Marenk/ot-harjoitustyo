@@ -4,7 +4,7 @@
 
 Pakkauskaavio sovelluksen toiminnasta
 
-![Screenshot from 2022-04-12 18-20-38](https://user-images.githubusercontent.com/95504014/162996756-450cd265-69e4-4da5-ba73-b0fd9e66e222.png)
+![](./kuvat/rakenne.png)
 
 ## Sovelluslogiikka
 
@@ -37,7 +37,7 @@ Sovelluksen suurimmasta osasta toiminnallisuudesta vastaa luokka [BudgetService]
 Yhteydestä tietokantaan sekä tiedostoihin hoitavat [BudgerRepository](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/src/repositories/budget_repository.py) ja [UserRepository](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/src/repositories/user_repository.py) luokkien oliot ja metodit
 
 Luokkien välistä suhdetta kuvaava luokkakaavio:
-![luokka_kaavio](https://user-images.githubusercontent.com/95504014/166419945-30719fde-28fb-4bdc-9b78-2a1e9dc665de.png)
+![](./kuvat/luokka_kaavio.png)
 
 ## Pysyvä tallennus
 
@@ -64,13 +64,13 @@ Sovelluksen toiminnallisuuksia kuvattuna sekvenssikaavioilla
 
 Käyttäjä antaa käyttäjänimen ja salasanan syötekenttiin, jonka jälkeen hän painaa "Kirjaudu sisään" -nappia, josta seuraa seuraavat tapahtumat:
 
-![login](https://user-images.githubusercontent.com/95504014/168222331-5b05e03f-9e90-40f0-b467-b665edb5d020.png)
+![](./kuvat/login_diagram.png)
 
 ### Uuden käyttäjän luominen
 
 Kun käyttäjä on syöttänyt haluamansa käyttäjänimen ja salasanan käyttöliittymässä teksikenttiin, painamalla nappia "Luo käyttäjä" tapahtuu seuraavat toimenpiteet
 
-![create_user](https://user-images.githubusercontent.com/95504014/168222303-04cd7e35-2612-4e0a-878b-63c8b69d0156.png)
+![](./kuvat/create_user_diagram.png)
 
 ### Uusi meno sekä tulo
 
@@ -78,11 +78,11 @@ Käyttäjä antaa sovelluksessa tiedon menon tai tulon nimestä, menon/tulon mä
 
 Menon lisäys:
 
-![add_expence_sekvenssi_kaavio](https://user-images.githubusercontent.com/95504014/166416878-40037b3d-c638-4f07-9a49-c00afa8fe8b4.png)
+![](./kuvat/add_expence_sekvenssi_kaavio.png)
 
 Tulon lisäsys:
 
-![income](https://user-images.githubusercontent.com/95504014/168222261-dc521d9f-4a1b-44a2-972c-bdbba1b6079a.png)
+![](./kuvat/income.png)
 
 ### Budjetin asettaminen
 
@@ -90,11 +90,11 @@ Käyttäjällä on mahdollista asettaa kuukaudelle haluaman budjetin. Päänäky
 
 Jos nykyiselle käyttäjälle ei olla vielä asetettu kuukaudelle budjettia:
 
-![set_new_budget](https://user-images.githubusercontent.com/95504014/168222656-bc1e95b0-be50-471f-9fae-b701b1a360fe.png)
+![](./kuvat/set_new_budget.png)
 
 Jos nykyisellä käyttäjällä on jo asetettuna budjetti kuukaudelle:
 
-![update_budget](https://user-images.githubusercontent.com/95504014/168222783-686a589d-149f-456a-9a25-dd1d61ab0eb7.png)
+![](./kuvat/update_budget.png)
 
 
 
