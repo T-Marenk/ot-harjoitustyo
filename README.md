@@ -24,6 +24,8 @@ Sovellusksen tarkoitus on auttaa käyttäjiä seuraamaan rahankäyttöään ja a
 
 [Release 2](https://github.com/T-Marenk/ot-harjoitustyo/releases/tag/viikko6)
 
+[Loppupalautus](https://github.com/T-Marenk/ot-harjoitustyo/releases/tag/loppupalautus)
+
 ## Asennus
 
 1. Asenna riippuvuudet suorittamalla:
