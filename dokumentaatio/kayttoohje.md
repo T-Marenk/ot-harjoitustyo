@@ -26,7 +26,7 @@ poetry run invoke start
 
 Sovelluksen käynnistys käynnistää kirjautumisnäkymän:
 
-![kirjautuminen](https://user-images.githubusercontent.com/95504014/166429090-49518dbb-e32b-4c66-946d-e5c434570c3a.png)
+![](./kuvat/Login.png)
 
 Sisään kirjautuminen on mahdollista olemassa olevalle käyttäjälle kirjoittamalla käyttäjän käyttäjätunnus ylempään kenttään, salasana alempaan kenttään,jonka jälkeen painamalla "Kirjaudu sisään"-nappia pääsee kirjautumaan sisälle
 
@@ -36,7 +36,7 @@ Uuden käyttäjän luomisnäkymään pääsee kirjautumisnäkymästä painamalla
 
 Tämä avaa seuraavan näkymän:
 
-![new_user](https://user-images.githubusercontent.com/95504014/166429512-3f7235e9-eac8-4c05-b445-c092212e2d68.png)
+![](./kuvat/Create_user.png)
 
 Kirjoittamalla syöttökenttiin uuden käyttäjän tiedot ja painamalla "Luo käyttäjä" -nappia saa luotua uuden käyttäjän
 
@@ -48,11 +48,15 @@ Onnistunut sisään kirjautuminen tuo esille päänäkymän.
 
 Tässä näkymässä näkee lisätyt menot ja tulot. Painamalla "Näytä kaikki tapahtumat" näet kaikki menot ja tulot ja painamalla "Näytä tämän kuun tapahtumat" näet vain meneillään olevan kuukauden tapahtumat
 
+Painamalla "Näytä menot" nappia näet vain menot ja painamalla "Näytä tulot" nappia näet vain tulot. Myös menoja ja tuloja voi tarkastella joko tältä kuukaudelta tai kaikkia.
+
 Tapahtuman poistaminen onnistuu painamalla "Poista" halutun tapahtuman vieressä
 
-![päänäkymä](https://user-images.githubusercontent.com/95504014/166429955-8e1542a0-ce33-45bb-b84b-4d44a253187d.png)
+![](./kuvat/main_view.png)
 
 Mikäli poisto onnistuu, sitä ei ole enään näkyvillä näkymässä
+
+Tapahtumia on näkyvillä aina 5 kerrallaan, jos niitä on lisätty ainakin 5 sovellukseen. Taphtumien alla olevilla "Seuraavat 5 tapahtumaa" ja "Viimeiset 5 tapahtumaa" napeilla pääsee selaamaan tapahtumia läpi.
 
 Painamalla näkymässä olevaa "Kirjaudu ulos" painiketta pääsee kirjautumaan ulos. Tämä näyttää taas kirjautumisnäkymän, josta pääsee kirjautumaan sisään toisella käyttäjällä
 
@@ -62,8 +66,36 @@ Päänäkymästä pääsee lisäämään uuden menon tai tulon painamalla "Lisä
 
 Molemmat näkymät toimivat samalla tavalla. Täyttämällä vaaditut tiedot syöttökenttiin ja valitsemalla kalenterista päivämäärän, jonka jälkeen painamalla joko "Lisää meno" tai "Lisää tulo" nappia saa tapahtuman lisättyä sovellukseen
 
-![Lisaa_meno](https://user-images.githubusercontent.com/95504014/166430544-2c6a7545-cb25-4a9b-8a27-112601e26562.png)
+Uusi meno:
 
-![lisaa_tulo](https://user-images.githubusercontent.com/95504014/166430616-a86d2169-51fc-45bf-93eb-407e0e3f46f1.png)
+![](./kuvat/new_expence.png)
+
+Uusi tulo:
+
+![](./kuvat/new_income.png)
 
 Mikäli lisääminen onnistuu, näyttää sovellus päänäkymän, jossa juuri lisätty tapahtuma on myös näkyvillä
+
+Tapahtumien kuvaus saa olla enintään 40 merkkiä ja määrän tulee olla positiivinen luku.
+
+"Peruuta" napin painaminen vie takaisin päänäkymään.
+
+## Budjetin asettaminen
+
+Päänäkymässä olevasta napista "Aseta budjetti kuukaudelle" napilla pääsee lisäämään budjetin kuluvalle kuukaudelle. Nappi vie toiseen näkymään, jossa syötekenttään kirjoitetaan haluttu budjetti.
+
+Lopuksi painamalla "Aseta budjetti" lisätään budjetti käyttäjälle
+
+![](./kuvat/set_budget.png)
+
+Mikäli lisääminen onnistuu, palaa sovellus päänäkymään asetettu budjetti näkyy tapahtumien yläpuolella kohdassa "Alkuperäinen budjetti"
+
+"Peruuta" nappi vie takaisin päänäkymään
+
+## Kuukausi diagrammi
+
+"Näytä kuukauden menot diagrammina" nappia painamalla vie sovellus näkymään, jossa tulee esille päiväkohtainen pylväsdiagrammi sen kuukauden tapahtumista
+
+![](./kuvat/budget_diagram.png)
+
+"Palaa päänäkymään" nappi vie takaisin päänäkymään
