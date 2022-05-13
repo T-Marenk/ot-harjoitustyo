@@ -2,6 +2,15 @@
 
 Lataa projektin viimeisin version [releasin] _Assests_ osion alta valitsemalla _Source code_.
 
+## Konfiguraatio
+
+Sovelluksen käyttämien tiedostojen nimet on mahdollista muuttaa juurihakemistossa löytyvässä _.env_ tiedostosa. Tämä ei kuitenkaan ole välttämätöntä. Tiedossa oleva tieto näyttää seuraavalta:
+
+```
+BUDGET_FILENAME = expences.csv
+DATABASE_FILENAME = database.sqlite
+```
+
 ## Ohjelman käynnistäminen
 
 Ennen ensimmäistä suoritus kertaa asenna tarvittavat riippuvuudet:
