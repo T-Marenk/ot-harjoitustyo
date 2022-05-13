@@ -24,26 +24,6 @@ Sovellusksen tarkoitus on auttaa käyttäjiä seuraamaan rahankäyttöään ja a
 
 [Release 2](https://github.com/T-Marenk/ot-harjoitustyo/releases/tag/viikko6)
 
-## Nykyinen tilanne
-
-Sovellusta pystyy käyttämään graafisessa käyttöliitymässä, jossa pystyy näkemään menot ja tulot sekä lisäämään niitä käyttäjä kohtaisesti. Käyttäjä on 
-
-Toiminnassa olevat ominaisuudet
-
-- Menojen lisääminen sovellukseen
-- Tulojen lisääminen sovellukseen
-- Menot ja tulot tallennetaan tiedostoon, josta ne voi lukea myös seuraavalla suorituskerralla
-- Menot ja tulot nähtävissä sovelluksessa
-- Yksittäisten menojen ja tulojen poistaminen
-- Tapahtumilla on päivämäärät
-  - Näe kaikki tapahtumat
-  - Näe vain meneillään olevan kuukauden tapahtumat 
-
-Puuttuvat toiminnot
-
-- Näe vain menot tai tulot
-- Kuukausittaisen budjetin asettaminen
-
 ## Asennus
 
 1. Asenna riippuvuudet suorittamalla:
@@ -64,6 +44,8 @@ poetry run invoke build
 poetry run invoke start
 ```
 
+## Muut toiminnot
+
 ### Testaaminen
 
 Luodut testit on mahdollista ajaa komennolla
@@ -81,3 +63,11 @@ poetry run invoke coverage-report
 ```
 
 Raportti luodaan _htmlcov_-hakemistoon.
+
+### Pylint
+
+Seuraavalla komennolla on mahdollista suorittaa [.pylintrc](https://github.com/T-Marenk/ot-harjoitustyo/blob/main/.pylintrc) määritellyt tarkistukset:
+
+```bsah
+poetry run invoke lint
+```
